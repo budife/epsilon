@@ -1,51 +1,24 @@
 (function () {
   'use strict';
   const $ = (selector) => document.querySelector(selector);
-  let activeType = 'URL';
-  let lastDataUrl = '';
-  const typeCopy = {
-    URL:['URL','Paste a website link, beginning with https:// or http://'],
-    Text:['Text','Enter any text to encode in the QR code'],
-    WhatsApp:['WhatsApp','Enter a phone number or WhatsApp link'],
-    Phone:['Phone','Enter a phone number'],
-    Mail:['Mail','Enter an email address'],
-    'Wi-Fi':['Wi-Fi','Enter Wi-Fi details or a network link']
-  };
-  function setType(type) {
-    activeType = type;
-    document.querySelectorAll('.type-tab').forEach((button) => button.classList.toggle('active', button.dataset.type === type));
-    $('#input-label').textContent = typeCopy[type][0];
-    $('#input-help').textContent = typeCopy[type][1];
-    $('#qr-input').placeholder = type === 'URL' ? 'https://example.com' : 'Type or paste your content here';
-  }
-  function generate() {
-    const text = $('#qr-input').value.trim();
-    if (!text) { $('#qr-status').textContent = 'Enter content to generate a QR code.'; return; }
-    try {
-      const qr = qrcode(0, $('#error-level').value);
-      qr.addData(text);
-      qr.make();
-      lastDataUrl = qr.createDataURL(8, 4);
-      const image = new Image();
-      image.alt = 'Generated QR code';
-      image.src = lastDataUrl;
-      image.onload = () => { $('#qr-output').replaceChildren(image); };
-      $('#download-png').disabled = false;
-      $('#qr-status').textContent = `Ready · ${activeType} QR code generated.`;
-    } catch (error) {
-      $('#qr-status').textContent = 'This content is too long for the selected QR format.';
-    }
-  }
-  function download() {
-    if (!lastDataUrl) return;
-    const link = document.createElement('a');
-    link.download = 'qr-code.png';
-    link.href = lastDataUrl;
-    link.click();
-  }
-  document.querySelectorAll('.type-tab').forEach((button) => button.addEventListener('click', () => setType(button.dataset.type)));
-  $('#generate').addEventListener('click', generate);
-  $('#download-png').addEventListener('click', download);
-  $('#qr-input').addEventListener('keydown', (event) => { if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') generate(); });
-  setType('URL');
+  qrcode.stringToBytes = qrcode.stringToBytesFuncs['UTF-8'];
+  let activeType = 'URL'; let lastPng = ''; let lastSvg = '';
+  const simpleCopy = { URL:['URL','Paste a website link, beginning with https:// or http://'], Text:['Text','Enter any text to encode in the QR code'], WhatsApp:['WhatsApp','Enter a phone number or WhatsApp link'], Phone:['Phone','Enter a phone number'], SMS:['SMS','Enter a phone number and message'], Mail:['Mail','Enter an email address'], 'Wi-Fi':['Wi-Fi','Enter Wi-Fi details or a network link'] };
+  function vCardForm() { return `<div class="vcard-grid"><input data-vcard="first" placeholder="First name"><input data-vcard="last" placeholder="Last name"><input data-vcard="mobile" class="wide" placeholder="Mobile"><input data-vcard="phone" placeholder="Phone"><input data-vcard="fax" placeholder="Fax"><input data-vcard="email" class="wide" type="email" placeholder="Email"><input data-vcard="company" placeholder="Company"><input data-vcard="job" placeholder="Your job"><input data-vcard="street" class="wide" placeholder="Street"><input data-vcard="city" placeholder="City"><input data-vcard="zip" placeholder="ZIP"><input data-vcard="state" class="wide" placeholder="State"><input data-vcard="country" class="wide" placeholder="Country"><input data-vcard="website" class="wide" placeholder="Website"></div>`; }
+  function resetPreview() { lastPng=''; lastSvg=''; $('#qr-output').innerHTML='<p class="qr-empty">Your QR code will appear here</p>'; ['download-png','download-svg','download-pdf'].forEach((id)=>{ $(`#${id}`).disabled=true; }); $('#qr-status').textContent='Enter content to begin.'; }
+  function setType(type) { const hadGenerated=Boolean(lastPng); const previous=activeType; if(hadGenerated&&previous!==type&&!window.confirm('Switching QR type will reset the current content and preview. Click OK to continue.')) return; if(hadGenerated&&previous!==type) resetPreview(); activeType=type; document.querySelectorAll('.type-tab').forEach((button)=>button.classList.toggle('active',button.dataset.type===type)); if(type==='vCard'){$('#input-area').innerHTML=vCardForm();} else { const copy=simpleCopy[type]; $('#input-area').innerHTML=`<label for="qr-input">${copy[0]}</label><p id="input-help" class="field-help">${copy[1]}</p><textarea id="qr-input" placeholder="${type==='URL'?'https://example.com':'Type or paste your content here'}" spellcheck="false"></textarea>`; } }
+  function valueFor(name){const field=document.querySelector(`[data-vcard="${name}"]`);return field?field.value.trim():'';}
+  function escapeVCard(value){return String(value||'').replace(/\\/g,'\\\\').replace(/\r?\n/g,'\\n').replace(/([;,])/g,'\\$1');}
+  function vCardLine(label,value){return value?`${label}:${escapeVCard(value)}`:'';}
+  function getContent(){if(activeType==='vCard'){const first=valueFor('first'),last=valueFor('last'),full=[first,last].filter(Boolean).join(' ');if(!full&&!valueFor('mobile')&&!valueFor('phone')&&!valueFor('email'))return '';const lines=['BEGIN:VCARD','VERSION:3.0',`N:${escapeVCard(last)};${escapeVCard(first)};;;`,`FN:${escapeVCard(full)}`];[['TEL;TYPE=CELL,VOICE',valueFor('mobile')],['TEL;TYPE=VOICE',valueFor('phone')],['TEL;TYPE=FAX',valueFor('fax')],['EMAIL;TYPE=INTERNET',valueFor('email')],['ORG',valueFor('company')],['TITLE',valueFor('job')]].forEach(([label,value])=>{const line=vCardLine(label,value);if(line)lines.push(line);});const address=['','',valueFor('street'),valueFor('city'),valueFor('state'),valueFor('zip'),valueFor('country')].map(escapeVCard).join(';');if(address.replace(/;/g,''))lines.push(`ADR;TYPE=WORK:${address}`);const website=vCardLine('URL',valueFor('website'));if(website)lines.push(website);lines.push('END:VCARD');return `${lines.join('\r\n')}\r\n`;}const input=$('#qr-input');return input?input.value.trim():'';}
+  function isFinder(row,col,size){return(row<7&&col<7)||(row<7&&col>=size-7)||(row>=size-7&&col<7);}
+  function moduleSvg(qr,size,shape,color,scale){const quiet=4,total=size+quiet*2,parts=[`<svg xmlns="http://www.w3.org/2000/svg" width="${scale}" height="${scale}" viewBox="0 0 ${total} ${total}"><rect width="100%" height="100%" fill="#fff"/>`];for(let row=0;row<size;row+=1)for(let col=0;col<size;col+=1)if(qr.isDark(row,col)){const x=col+quiet,y=row+quiet;if(shape==='dots'&&!isFinder(row,col,size))parts.push(`<circle cx="${x+.5}" cy="${y+.5}" r=".46" fill="${color}"/>`);else if(shape==='diamond'&&!isFinder(row,col,size))parts.push(`<path d="M${x+.5} ${y+.04}L${x+.96} ${y+.5}L${x+.5} ${y+.96}L${x+.04} ${y+.5}Z" fill="${color}"/>`);else if(shape==='rounded'&&!isFinder(row,col,size))parts.push(`<rect x="${x+.04}" y="${y+.04}" width=".92" height=".92" rx=".22" fill="${color}"/>`);else parts.push(`<rect x="${x}" y="${y}" width="1" height="1" fill="${color}"/>`);}return `${parts.join('')}</svg>`;}
+  function moduleCanvas(qr,size,shape,color,scale){const canvas=document.createElement('canvas');canvas.width=scale;canvas.height=scale;const ctx=canvas.getContext('2d'),quiet=4,total=size+quiet*2,unit=scale/total;ctx.fillStyle='#fff';ctx.fillRect(0,0,scale,scale);ctx.fillStyle=color;for(let row=0;row<size;row+=1)for(let col=0;col<size;col+=1)if(qr.isDark(row,col)){const x=(col+quiet)*unit,y=(row+quiet)*unit;if(shape==='dots'&&!isFinder(row,col,size)){ctx.beginPath();ctx.arc(x+unit/2,y+unit/2,unit*.46,0,Math.PI*2);ctx.fill();}else if(shape==='diamond'&&!isFinder(row,col,size)){ctx.beginPath();ctx.moveTo(x+unit/2,y+unit*.04);ctx.lineTo(x+unit*.96,y+unit/2);ctx.lineTo(x+unit/2,y+unit*.96);ctx.lineTo(x+unit*.04,y+unit/2);ctx.closePath();ctx.fill();}else if(shape==='rounded'&&!isFinder(row,col,size)){ctx.beginPath();ctx.roundRect(x+unit*.04,y+unit*.04,unit*.92,unit*.92,unit*.22);ctx.fill();}else ctx.fillRect(x,y,unit,unit);}return canvas;}
+  function generate(){const text=getContent();if(!text){$('#qr-status').textContent='Enter content to generate a QR code.';return;}try{const level=activeType==='vCard'?'L':$('#error-level').value,qr=qrcode(0,level);qr.addData(text);qr.make();const size=qr.getModuleCount(),shape=$('#module-shape').value,color=$('#module-color').value,scale=Number($('#export-size').value);lastSvg=moduleSvg(qr,size,shape,color,scale);const canvas=moduleCanvas(qr,size,shape,color,scale);lastPng=canvas.toDataURL('image/png');const image=new Image();image.alt='Generated QR code';image.src=lastPng;image.onload=()=>$('#qr-output').replaceChildren(image);['download-png','download-svg','download-pdf'].forEach((id)=>{$(`#${id}`).disabled=false;});$('#qr-status').textContent=`Ready · ${activeType} QR code generated.`;$('#tab-notice').textContent='';$('#tab-notice').classList.remove('visible');}catch(error){$('#qr-status').textContent='This content is too long for the selected QR format.';}}
+  function saveBlob(blob,name){const link=document.createElement('a');link.download=name;link.href=URL.createObjectURL(blob);link.click();setTimeout(()=>URL.revokeObjectURL(link.href),1000);}
+  function downloadPng(){if(lastPng)saveBlob(dataUrlToBlob(lastPng),'qr-code.png');}
+  function dataUrlToBlob(dataUrl){const parts=dataUrl.split(','),bytes=atob(parts[1]),array=new Uint8Array(bytes.length);for(let i=0;i<bytes.length;i+=1)array[i]=bytes.charCodeAt(i);return new Blob([array],{type:'image/png'});}
+  function downloadSvg(){if(lastSvg)saveBlob(new Blob([lastSvg],{type:'image/svg+xml'}),'qr-code.svg');}
+  async function downloadPdf(){if(!lastPng||!window.PDFLib)return;const doc=await PDFLib.PDFDocument.create(),page=doc.addPage([Number($('#export-size').value),Number($('#export-size').value)]),image=await doc.embedPng(lastPng),size=Number($('#export-size').value);page.drawImage(image,{x:0,y:0,width:size,height:size});saveBlob(new Blob([await doc.save()],{type:'application/pdf'}),'qr-code.pdf');}
+  document.querySelectorAll('.type-tab').forEach((button)=>button.addEventListener('click',()=>setType(button.dataset.type)));$('#generate').addEventListener('click',generate);$('#download-png').addEventListener('click',downloadPng);$('#download-svg').addEventListener('click',downloadSvg);$('#download-pdf').addEventListener('click',downloadPdf);['module-shape','module-color','export-size'].forEach((id)=>$(`#${id}`).addEventListener('change',()=>{if(lastPng)generate();}));setType('URL');
 }());
