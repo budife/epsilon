@@ -1,7 +1,8 @@
 # Epsilon — Excel Report Studio
 
-Open `index.html` directly in a modern desktop browser. No installation, web server, npm package, or build step is required.
+Open `index.html` directly in a modern desktop browser. The home page lists the available tools:
 
-Epsilon reads the first worksheet, locates the `CURRENCY` header, reads its four rate columns and three-letter currency codes below it, then uses the first workbook-header date as the report date. It exports the resulting presentation at 1920 × 1080 PNG.
+- `Daily Currency Report` opens `daily-currency.html` and converts the counter-rate workbook into a 1920 × 1080 PNG presentation.
+- `QR Code Generator` opens `qrcode.html` and creates downloadable QR codes for URLs, text, WhatsApp, phone, email, and Wi-Fi content.
 
-`libs/` contains SheetJS and html-to-image, so the application works offline after the project is copied.
+No installation, web server, npm package, or build step is required. Bundled libraries in `libs/` keep both tools usable offline.
