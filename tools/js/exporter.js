@@ -4,8 +4,8 @@
     if (!window.htmlToImage) throw new Error('The image exporter library is unavailable.');
     const originalStyle = node.getAttribute('style');
     const mode = window.EpsilonRenderer.getMode();
-    const width = mode === 'vertical' ? 900 : 1920;
-    const height = mode === 'vertical' ? 1400 : 1080;
+    const width = mode === 'vertical' ? 1080 : 1920;
+    const height = mode === 'vertical' ? 1920 : 1080;
     try {
       node.style.setProperty('position', 'absolute');
       node.style.setProperty('left', '0px');
