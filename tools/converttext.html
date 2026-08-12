@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Convert Text — Epsilon</title>
+  <link rel="icon" type="image/png" href="../assets/epsilon-logo.png">
+  <link rel="stylesheet" href="converttext.css">
+</head>
+<body>
+  <main class="convert-app">
+    <header class="convert-header">
+      <a class="convert-brand" href="../index.html">
+        <span class="convert-brand-mark">E</span>
+        <span>Epsilon · Convert Text</span>
+      </a>
+      <a class="back-home" href="../index.html">All tools</a>
+    </header>
+
+    <div class="convert-layout">
+      <section class="convert-main">
+        <h1>Convert Text Case</h1>
+        <p class="lead">Paste or type your text below, then choose a case to convert it instantly.</p>
+
+        <div class="input-card">
+          <textarea id="text-input" placeholder="Paste or type your text here..." spellcheck="false"></textarea>
+        </div>
+
+        <div class="stats-bar">
+          <span id="char-count">0 characters</span>
+          <span id="word-count">0 words</span>
+          <span id="line-count">0 lines</span>
+        </div>
+
+        <div class="case-buttons">
+          <button class="case-btn" data-case="sentence" title="Capitalize first letter of each sentence">Sentence case</button>
+          <button class="case-btn" data-case="lower" title="Convert all text to lowercase">lower case</button>
+          <button class="case-btn" data-case="upper" title="Convert all text to UPPER CASE">UPPER CASE</button>
+          <button class="case-btn" data-case="capitalized" title="Capitalize First Letter Of Each Word">Capitalized Case</button>
+          <button class="case-btn" data-case="alternating" title="aLtErNaTiNg cAsE">aLtErNaTiNg cAsE</button>
+          <button class="case-btn" data-case="title" title="Title Case (articles/prepositions stay lowercase)">Title Case</button>
+          <button class="case-btn" data-case="inverse" title="iNVERSE cASE - swap case of each letter">InVeRsE CaSe</button>
+        </div>
+
+        <div class="action-buttons">
+          <button id="copy-btn" class="action-btn" title="Copy to clipboard">
+            <span class="action-icon">📋</span> Copy
+          </button>
+          <button id="download-btn" class="action-btn" title="Download as text file">
+            <span class="action-icon">💾</span> Download
+          </button>
+          <button id="clear-btn" class="action-btn" title="Clear text">
+            <span class="action-icon">✕</span> Clear
+          </button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="converttext.js"></script>
+</body>
+</html>
