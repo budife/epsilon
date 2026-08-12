@@ -1,7 +1,7 @@
 :root { --red:#e60012; --ink:#121212; --muted:#6c7781; }
 * { box-sizing:border-box; }
-body { margin:0; background:#edf1f4; color:#17212b; font-family:Univers,"Univers 45 Light","Univers LT Std",Arial,sans-serif; }
-.app-shell { height:100vh; min-height:640px; display:flex; }
+body { margin:0; background:#edf1f4; color:#17212b; font-family:Univers,"Univers 45 Light","Univers LT Std",Arial,sans-serif; display:flex; flex-direction:column; min-height:100vh; }
+.app-shell { flex:1; min-height:0; display:flex; }
 .sidebar { width:312px; flex:0 0 312px; background:#fff; padding:30px 24px; display:flex; flex-direction:column; border-right:1px solid #dce3e8; }
 .brand { display:flex; align-items:center; gap:13px; margin-bottom:44px; }.brand-mark { width:42px; height:42px; display:grid; place-items:center; background:var(--red); color:#fff; font-family:Georgia,serif; font-size:27px; font-weight:bold; }.brand h1 { font-size:21px; margin:0 0 2px; }.brand p { margin:0; color:var(--muted); font-size:12px; }
 .panel { margin-bottom:25px; }.eyebrow { margin:0 0 10px; color:#75818d; font-size:10px; font-weight:700; letter-spacing:1.2px; }.drop-zone { height:190px; border:1px dashed #b9c4cd; border-radius:3px; background:#fafbfc; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; cursor:pointer; transition:.15s ease; }.drop-zone.dragging { border-color:var(--red); background:#fff5f5; }.upload-icon { color:var(--red); font-size:27px; line-height:1; margin-bottom:11px; }.drop-zone strong { font-size:13px; }.drop-zone small { color:#74808b; font-size:11px; margin:6px 20px 14px; }.choose-button { padding:7px 13px; border:1px solid #c4cdd5; background:#fff; color:#253342; font-size:11px; font-weight:700; }.file-name { padding:10px 3px 0; color:var(--muted); font-size:11px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
