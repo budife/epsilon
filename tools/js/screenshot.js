@@ -73,18 +73,34 @@ function cropWhiteSpace(canvas){
   var imageData=ctx.getImageData(0,0,w,h);
   var data=imageData.data;
   
+  // Sample corner pixels to detect background color (the gray/white outer area)
+  var bgR=0,bgG=0,bgB=0;
+  var corners=[[0,0],[w-1,0],[0,h-1],[w-1,h-1],[Math.floor(w/2),0],[Math.floor(w/2),h-1]];
+  for(var i=0;i<corners.length;i++){
+    var idx=(corners[i][1]*w+corners[i][0])*4;
+    bgR+=data[idx];
+    bgG+=data[idx+1];
+    bgB+=data[idx+2];
+  }
+  bgR=Math.round(bgR/corners.length);
+  bgG=Math.round(bgG/corners.length);
+  bgB=Math.round(bgB/corners.length);
+  
+  // Pixels within this tolerance of the background are treated as background
+  var tolerance=18;
+  
   var minX=w,minY=h,maxX=0,maxY=0;
-  var threshold=250;
   
   for(var y=0;y<h;y++){
     for(var x=0;x<w;x++){
       var idx=(y*w+x)*4;
+      var a=data[idx+3];
+      if(a===0)continue;
       var r=data[idx];
       var g=data[idx+1];
       var b=data[idx+2];
-      var a=data[idx+3];
-      if(a===0)continue;
-      if(r>threshold&&g>threshold&&b>threshold)continue;
+      // Skip if pixel matches background color
+      if(Math.abs(r-bgR)<=tolerance&&Math.abs(g-bgG)<=tolerance&&Math.abs(b-bgB)<=tolerance)continue;
       if(x<minX)minX=x;
       if(x>maxX)maxX=x;
       if(y<minY)minY=y;
@@ -94,11 +110,8 @@ function cropWhiteSpace(canvas){
   
   if(maxX<=minX||maxY<=minY)return canvas;
   
-  var padding=10;
-  minX=Math.max(0,minX-padding);
-  minY=Math.max(0,minY-padding);
-  maxX=Math.min(w-1,maxX+padding);
-  maxY=Math.min(h-1,maxY+padding);
+  // Keep the top intact, crop only left/right/bottom
+  minY=0;
   
   var cropW=maxX-minX+1;
   var cropH=maxY-minY+1;
@@ -203,6 +216,17 @@ function collectScreenshotImageTasks(documentRef){
   return tasks;
 }
 
+async function runLimited(items,limit,worker){
+  var queue=items.slice();
+  var workers=Array.from({length:Math.min(limit,queue.length)},async function(){
+    while(queue.length){
+      var item=queue.shift();
+      await worker(item);
+    }
+  });
+  await Promise.all(workers);
+}
+
 async function preparePreviewImagesForScreenshot(documentRef){
   var tasks=collectScreenshotImageTasks(documentRef);
   if(!tasks.length)return{total:0,converted:0};
@@ -211,12 +235,11 @@ async function preparePreviewImagesForScreenshot(documentRef){
   var converted=0;
   var styleDataUrls=new Map();
 
-  for(var i=0;i<tasks.length;i++){
-    var task=tasks[i];
+  await runLimited(tasks,6,async function(task){
     var dataUrl=await fetchImageAsDataUrl(task.url);
     completed+=1;
     updateProgress('Preparing screenshot images '+completed+'/'+tasks.length);
-    if(!dataUrl)continue;
+    if(!dataUrl)return;
     converted+=1;
 
     if(task.attribute==='src'){
@@ -224,17 +247,17 @@ async function preparePreviewImagesForScreenshot(documentRef){
       task.element.removeAttribute('sizes');
       task.element.crossOrigin='anonymous';
       task.element.src=dataUrl;
-      continue;
+      return;
     }
 
     if(task.attribute==='background'){
       task.element.setAttribute('background',dataUrl);
-      continue;
+      return;
     }
 
     if(!styleDataUrls.has(task.element))styleDataUrls.set(task.element,[]);
     styleDataUrls.get(task.element).push([task.rawUrl,dataUrl]);
-  }
+  });
 
   styleDataUrls.forEach(function(replacements,element){
     var styleValue=element.getAttribute('style')||'';
