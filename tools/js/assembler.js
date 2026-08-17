@@ -3,7 +3,8 @@
 var $=function(s){return document.querySelector(s)};
 
 var TEMPLATES={
-  header:{src:'../assets/header.jpg',name:'HSBC Premier Header'},
+  header:{src:'../assets/header.jpg',name:'HSBC Header'},
+  'header-premier':{src:'../assets/header-premier.jpg',name:'HSBC Premier Header'},
   footer:{src:'../assets/footer.jpg',name:'Standard Footer'},
   'footer-mobile':{src:'../assets/footer-with-mobile.jpg',name:'Footer + Mobile App'}
 };
