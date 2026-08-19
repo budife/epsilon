@@ -87,7 +87,7 @@ function cropWhiteSpace(canvas){
   bgB=Math.round(bgB/corners.length);
   
   // Pixels within this tolerance of the background are treated as background
-  var tolerance=18;
+  var tolerance=8;
   
   var minX=w,minY=h,maxX=0,maxY=0;
   
@@ -478,10 +478,14 @@ async function capture(){
 async function download(){
   if(!lastImage)return;
   var format=$('#ss-format').value;
-  var hostname=$('#url-input').value.trim().replace(/^https?:\/\//i,'').replace(/^www\./i,'').split('/')[0];
-  var d=new Date();
-  var ts=''+d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0');
-  var fileName='screenshot-'+hostname+'-'+ts;
+  var raw=$('#url-input').value.trim().replace(/^https?:\/\//i,'').split(/[?#]/)[0].replace(/\/+$/,'');
+  var parts=raw.split('/').filter(Boolean);
+  var stem='';
+  if(parts.length>1)stem=parts[parts.length-1].replace(/\.[a-z0-9]+$/i,'');
+  if(!stem&&parts.length)stem=parts[0].replace(/^www\./i,'');
+  stem=stem.replace(/[^\w\-.]+/g,'-').replace(/-{2,}/g,'-').replace(/^[-.]+|[-.]+$/g,'');
+  if(!stem)stem='screenshot';
+  var fileName=stem;
   
   if(format==='pdf'){
     if(!window.PDFLib){
