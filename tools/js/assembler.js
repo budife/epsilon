@@ -101,11 +101,16 @@ function download(){
     status('Nothing to download. Combine first.');
     return;
   }
-  var stem=layoutFileName?layoutFileName.replace(/\.[^.]+$/,''):'email-assembled';
+  var stem=layoutFileName?layoutFileName.replace(/\.[^.]+$/,'').replace(/^Template(-[a-z-]+)?_/i,''):'layout';
   var fmt=$('#format-select').value;
+  var parts=['Template'];
+  var hk=$('#header-select').value,fk=$('#footer-select').value;
+  if(hk!=='none')parts.push(hk);
+  if(fk!=='none')parts.push(fk);
+  var name=parts.join('-')+'_'+stem+'.'+fmt;
   finalCanvas.toBlob(function(blob){
     var link=document.createElement('a');
-    link.download=stem+'.'+fmt;
+    link.download=name;
     link.href=URL.createObjectURL(blob);
     link.click();
     setTimeout(function(){URL.revokeObjectURL(link.href)},1000);

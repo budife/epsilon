@@ -22,56 +22,60 @@
         <h1>Template Assembler</h1>
         <p class="lead">Drop your layout image (PNG/JPG), pick a header & footer template, then combine into a complete email.</p>
 
-        <div class="input-card">
-          <label id="drop-zone" class="as-drop-zone" for="file-input">
-            <span class="upload-icon">↑</span>
-            <strong>Drop layout image here</strong>
-            <small>PNG or JPG — the middle content of your email</small>
-            <span class="choose-button">Choose Image</span>
-          </label>
-          <input id="file-input" type="file" accept=".png,.jpg,.jpeg,image/png,image/jpeg" hidden>
-          <div id="file-name" class="as-file-name">No image selected</div>
-        </div>
+        <div class="as-columns">
+          <div class="as-col-left">
+            <div class="input-card">
+              <label id="drop-zone" class="as-drop-zone" for="file-input">
+                <span class="upload-icon">↑</span>
+                <strong>Drop layout image here</strong>
+                <small>PNG or JPG — the middle content of your email</small>
+                <span class="choose-button">Choose Image</span>
+              </label>
+              <input id="file-input" type="file" accept=".png,.jpg,.jpeg,image/png,image/jpeg" hidden>
+              <div id="file-name" class="as-file-name">No image selected</div>
+            </div>
 
-        <div class="options-card">
-          <div class="field">
-            <label for="header-select">Header template</label>
-            <select id="header-select">
-              <option value="none">None</option>
-              <option value="header" selected>HSBC Header</option>
-              <option value="header-premier">HSBC Premier Header</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="footer-select">Footer template</label>
-            <select id="footer-select">
-              <option value="none">None</option>
-              <option value="footer" selected>Standard Footer</option>
-              <option value="footer-mobile">Footer + Mobile App</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="width-select">Email width</label>
-            <select id="width-select">
-              <option value="600" selected>600 px (standard)</option>
-              <option value="750">750 px</option>
-            </select>
-          </div>
-        </div>
+            <div class="options-card">
+              <div class="field">
+                <label for="header-select">Header template</label>
+                <select id="header-select">
+                  <option value="none">None</option>
+                  <option value="header" selected>HSBC Header</option>
+                  <option value="header-premier">HSBC Premier Header</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="footer-select">Footer template</label>
+                <select id="footer-select">
+                  <option value="none">None</option>
+                  <option value="footer" selected>Standard Footer</option>
+                  <option value="footer-mobile">Footer + Mobile App</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="width-select">Email width</label>
+                <select id="width-select">
+                  <option value="600" selected>600 px (standard)</option>
+                  <option value="750">750 px</option>
+                </select>
+              </div>
+            </div>
 
-        <div class="as-actions">
-          <button id="combine-btn" class="as-btn primary">Combine & Preview</button>
-          <button id="download-btn" class="as-btn secondary" disabled>Download Image</button>
-          <div class="as-actions-right">
-            <label class="field-inline" for="format-select">Format</label>
-            <select id="format-select" class="format-select"><option value="png">PNG</option><option value="jpg">JPG</option></select>
+            <div class="as-actions">
+              <button id="combine-btn" class="as-btn primary">Combine & Preview</button>
+              <button id="download-btn" class="as-btn secondary" disabled>Download Image</button>
+              <div class="as-actions-right">
+                <label class="field-inline" for="format-select">Format</label>
+                <select id="format-select" class="format-select"><option value="png">PNG</option><option value="jpg">JPG</option></select>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="preview-card">
-          <div id="as-status" class="as-status">Drop a layout image and click Combine & Preview.</div>
-          <div class="preview-frame-wrap">
-            <iframe id="preview-frame" class="preview-frame" title="Email preview" sandbox="allow-same-origin"></iframe>
+          <div class="preview-card as-col-right">
+            <div id="as-status" class="as-status">Drop a layout image and click Combine & Preview.</div>
+            <div class="preview-frame-wrap">
+              <iframe id="preview-frame" class="preview-frame" title="Email preview" sandbox="allow-same-origin"></iframe>
+            </div>
           </div>
         </div>
       </section>
