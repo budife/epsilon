@@ -307,18 +307,16 @@ function waitForDocumentImages(documentRef,timeoutMs){
 
 async function fetchHtml(url){
   var proxies=[
+    {url:'https://html-fetcher.budi-indra94.workers.dev/?url='+encodeURIComponent(url),name:'Worker'},
     {url:'https://corsproxy.io/?'+encodeURIComponent(url),name:'CorsProxy'},
-    {url:'https://api.allorigins.win/raw?url='+encodeURIComponent(url),name:'AllOrigins'},
-    {url:'https://api.codetabs.com/v1/proxy?quest='+encodeURIComponent(url),name:'CodeTabs'},
-    {url:'https://r.jina.ai/http/'+url.replace(/^https?:\/\//,''),name:'Jina HTTP'},
-    {url:'https://r.jina.ai/https/'+url.replace(/^https?:\/\//,''),name:'Jina HTTPS'}
+    {url:'https://api.allorigins.win/raw?url='+encodeURIComponent(url),name:'AllOrigins'}
   ];
-  
+
   for(var i=0;i<proxies.length;i++){
     try{
       updateProgress('Trying '+proxies[i].name+'...');
       var controller=new AbortController();
-      var timeoutId=setTimeout(function(){controller.abort()},5000);
+      var timeoutId=setTimeout(function(){controller.abort()},15000);
       var response=await fetch(proxies[i].url,{
         signal:controller.signal,
         headers:{'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}
@@ -361,7 +359,7 @@ async function capture(){
   iframe.style.position='absolute';
   iframe.style.left='-9999px';
   iframe.style.top='0';
-  iframe.sandbox='allow-same-origin allow-popups';
+  iframe.sandbox='allow-popups allow-scripts';
   document.body.appendChild(iframe);
   
   try{
