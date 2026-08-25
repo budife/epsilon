@@ -390,10 +390,20 @@ async function capture(){
     
     setProgressPercent(70);
     updateProgress('Capturing screenshot...');
-    var html2canvas=await loadHtml2Canvas();
-    
-    var target=doc&&(doc.body||doc.documentElement);
-    if(!target)throw new Error('Unable to access page content');
+    await new Promise(function(r){setTimeout(r,1500)});
+
+    var doc=iframe.contentDocument;
+    if(!doc)throw new Error('Cannot read document — srcdoc blocked');
+
+    await new Promise(function(r){
+      if(doc.body&&doc.body.children.length>0){r();return}
+      var poll=setInterval(function(){
+        if(doc.body&&doc.body.children.length>0){clearInterval(poll);r()}
+      },100);
+      setTimeout(function(){clearInterval(poll);r()},10000);
+    });
+
+    var target=doc.body||doc.documentElement;
     
     var contentWidth=1450;
     var contentHeight=800;
@@ -418,6 +428,7 @@ async function capture(){
     await new Promise(function(r){setTimeout(r,300)});
     
     setProgressPercent(80);
+    var html2canvas=await loadHtml2Canvas();
     var canvas=await html2canvas(target,{
       backgroundColor:'#ffffff',
       scale:1,
