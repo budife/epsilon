@@ -372,22 +372,12 @@ async function capture(){
     });
     
     setProgressPercent(40);
-    updateProgress('Waiting for images...');
-    var doc=iframe.contentDocument;
-    if(doc){
-      await waitForDocumentImages(doc,5000);
-    }
-    
+    updateProgress('Setting up...');
+
     setProgressPercent(50);
-    updateProgress('Preparing images for screenshot...');
-    if(doc){
-      var result=await preparePreviewImagesForScreenshot(doc);
-      updateProgress('Images: '+result.converted+'/'+result.total+' embedded');
-    }
-    
-    setProgressPercent(60);
-    await new Promise(function(r){setTimeout(r,500)});
-    
+    updateProgress('Waiting for page to render...');
+    await new Promise(function(r){setTimeout(r,2000)});
+
     setProgressPercent(70);
     updateProgress('Capturing screenshot...');
     await new Promise(function(r){setTimeout(r,1500)});
