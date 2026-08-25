@@ -165,7 +165,7 @@ async function fetchImageAsDataUrl(url){
       signal:controller.signal,
       mode:'cors',
       credentials:'omit',
-      headers:{'Accept':'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'}
+      headers:{'Accept':'image/*'}
     });
     clearTimeout(timeoutId);
     if(!response.ok)throw new Error('HTTP '+response.status);
