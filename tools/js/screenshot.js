@@ -153,40 +153,37 @@ function getImageFetchAttempts(url){
 }
 
 async function fetchImageAsDataUrl(url){
-  if(!url)return'';
-  if(imageCache.has(url))return imageCache.get(url);
-  
-  var attempts=getImageFetchAttempts(url);
-  var controllers=[];
-  
-  for(var i=0;i<attempts.length;i++){
-    var attempt=attempts[i];
-    var controller=new AbortController();
-    controllers.push(controller);
-    var timeoutId=setTimeout(function(){controller.abort()},7000);
-    try{
-      var response=await fetch(attempt.url,{
-        signal:controller.signal,
-        mode:'cors',
-        credentials:'omit',
-        headers:{'Accept':'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'}
-      });
-      clearTimeout(timeoutId);
-      if(!response.ok)continue;
-      var blob=await response.blob();
-      if(!blob||!blob.size)continue;
-      var dataUrl=await readBlobAsDataUrl(blob);
-      imageCache.set(url,dataUrl);
-      controllers.forEach(function(c){c.abort()});
-      return dataUrl;
-    }catch(e){
-      clearTimeout(timeoutId);
-      continue;
-    }
+  if(!url)return Promise.resolve('');
+  if(imageCache.has(url))return Promise.resolve(imageCache.get(url));
+
+  var proxyUrl='https://html-fetcher.budi-indra94.workers.dev/?url='+encodeURIComponent(url);
+  var controller=new AbortController();
+  var timeoutId=setTimeout(function(){controller.abort()},15000);
+
+  try{
+    var response=await fetch(proxyUrl,{
+      signal:controller.signal,
+      mode:'cors',
+      credentials:'omit',
+      headers:{'Accept':'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'}
+    });
+    clearTimeout(timeoutId);
+    if(!response.ok)throw new Error('HTTP '+response.status);
+    var blob=await response.blob();
+    if(!blob||!blob.size)throw new Error('Empty blob');
+    var dataUrl=await new Promise(function(resolve,reject){
+      var reader=new FileReader();
+      reader.onload=function(){resolve(reader.result)};
+      reader.onerror=function(){reject('Read error')};
+      reader.readAsDataURL(blob);
+    });
+    imageCache.set(url,dataUrl);
+    return dataUrl;
+  }catch(e){
+    clearTimeout(timeoutId);
+    imageCache.set(url,'');
+    return '';
   }
-  controllers.forEach(function(c){c.abort()});
-  imageCache.set(url,'');
-  return'';
 }
 
 function collectScreenshotImageTasks(documentRef){
@@ -372,18 +369,25 @@ async function capture(){
     });
     
     setProgressPercent(40);
-    updateProgress('Setting up...');
+    updateProgress('Waiting for page to load...');
 
     setProgressPercent(50);
-    updateProgress('Waiting for page to render...');
-    await new Promise(function(r){setTimeout(r,2000)});
+    updateProgress('Preparing images for screenshot...');
+    var doc=iframe.contentDocument;
+    if(doc){
+      await waitForDocumentImages(doc,5000);
+      var result=await preparePreviewImagesForScreenshot(doc);
+      updateProgress('Images: '+result.converted+'/'+result.total+' embedded');
+    }
+
+    setProgressPercent(60);
+    await new Promise(function(r){setTimeout(r,500)});
 
     setProgressPercent(70);
     updateProgress('Capturing screenshot...');
-    await new Promise(function(r){setTimeout(r,1500)});
+    await new Promise(function(r){setTimeout(r,2000)});
 
-    var doc=iframe.contentDocument;
-    if(!doc)throw new Error('Cannot read document — srcdoc blocked');
+    if(!doc)throw new Error('Cannot read document - srcdoc blocked');
 
     await new Promise(function(r){
       if(doc.body&&doc.body.children.length>0){r();return}
