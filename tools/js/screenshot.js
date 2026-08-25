@@ -306,32 +306,26 @@ function waitForDocumentImages(documentRef,timeoutMs){
 }
 
 async function fetchHtml(url){
-  var proxies=[
-    {url:'https://html-fetcher.budi-indra94.workers.dev/?url='+encodeURIComponent(url),name:'Worker'},
-    {url:'https://corsproxy.io/?'+encodeURIComponent(url),name:'CorsProxy'},
-    {url:'https://api.allorigins.win/raw?url='+encodeURIComponent(url),name:'AllOrigins'}
-  ];
-
-  for(var i=0;i<proxies.length;i++){
-    try{
-      updateProgress('Trying '+proxies[i].name+'...');
-      var controller=new AbortController();
-      var timeoutId=setTimeout(function(){controller.abort()},15000);
-      var response=await fetch(proxies[i].url,{
-        signal:controller.signal,
-        headers:{'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}
-      });
-      clearTimeout(timeoutId);
-      if(!response.ok)continue;
-      var html=await response.text();
-      if(html&&html.length>100&&/<html|<!doctype|<body/i.test(html)){
-        return html;
-      }
-    }catch(e){
-      continue;
+  var proxyUrl='https://html-fetcher.budi-indra94.workers.dev/?url='+encodeURIComponent(url);
+  var controller=new AbortController();
+  var timeoutId=setTimeout(function(){controller.abort()},20000);
+  try{
+    updateProgress('Fetching via worker...');
+    var response=await fetch(proxyUrl,{
+      signal:controller.signal,
+      headers:{'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}
+    });
+    clearTimeout(timeoutId);
+    if(!response.ok)throw new Error('HTTP '+response.status);
+    var html=await response.text();
+    if(!html||html.length<100||!/<html|<!doctype|<body/i.test(html)){
+      throw new Error('Invalid or empty HTML response');
     }
+    return html;
+  }catch(e){
+    clearTimeout(timeoutId);
+    throw new Error('Fetch failed: '+(e.message||'unknown'));
   }
-  throw new Error('All fetch attempts failed');
 }
 
 async function capture(){
@@ -398,7 +392,7 @@ async function capture(){
     updateProgress('Capturing screenshot...');
     var html2canvas=await loadHtml2Canvas();
     
-    var target=doc.body||doc.documentElement;
+    var target=doc&&(doc.body||doc.documentElement);
     if(!target)throw new Error('Unable to access page content');
     
     var contentWidth=1450;
