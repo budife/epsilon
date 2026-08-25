@@ -353,7 +353,7 @@ async function capture(){
   iframe.style.position='absolute';
   iframe.style.left='-9999px';
   iframe.style.top='0';
-  iframe.sandbox='allow-popups allow-scripts';
+  iframe.sandbox='allow-same-origin allow-popups allow-scripts';
   document.body.appendChild(iframe);
   
   try{
