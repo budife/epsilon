@@ -7,6 +7,35 @@ var imageCache=new Map();
 var latestPreviewHtml='';
 var latestPreviewSourceUrl='';
 
+// ── Fetcher providers — mirror eDM Helper js/pages-layout-checker.js:14,18 ──
+var GOOGLE_APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbw29ldtoG5eq2I0bmeF055VWaZ_Ejk59E1wMrhY2pSdWuEHTDRL3saPCR2BoAC6-nmP/exec';
+var FETCHER_PROVIDER_KEY='epsilon:screenshot:fetcher-provider';
+var FETCHER_PROVIDERS={
+  'google-apps-script':{
+    label:'Google Apps Script',
+    buildUrl:function(targetUrl){ return GOOGLE_APPS_SCRIPT_URL+'?url='+encodeURIComponent(targetUrl); }
+  },
+  'worker':{
+    label:'Cloudflare Worker (legacy)',
+    buildUrl:function(targetUrl){ return 'https://html-fetcher.budi-indra94.workers.dev/?url='+encodeURIComponent(targetUrl); }
+  }
+};
+
+function getFetcherProviderKey(){
+  try{
+    var v=localStorage.getItem(FETCHER_PROVIDER_KEY);
+    if(v&&FETCHER_PROVIDERS[v])return v;
+  }catch(e){}
+  var sel=document.getElementById('ss-fetcher');
+  if(sel&&FETCHER_PROVIDERS[sel.value])return sel.value;
+  return 'google-apps-script';
+}
+function setFetcherProviderKey(key){
+  try{ localStorage.setItem(FETCHER_PROVIDER_KEY,key); }catch(e){}
+  var sel=document.getElementById('ss-fetcher');
+  if(sel)sel.value=key;
+}
+
 function loadHtml2Canvas(){
   if(window.html2canvas)return Promise.resolve(window.html2canvas);
   if(html2canvasPromise)return html2canvasPromise;
@@ -156,34 +185,39 @@ async function fetchImageAsDataUrl(url){
   if(!url)return Promise.resolve('');
   if(imageCache.has(url))return Promise.resolve(imageCache.get(url));
 
-  var proxyUrl='https://html-fetcher.budi-indra94.workers.dev/?url='+encodeURIComponent(url);
-  var controller=new AbortController();
-  var timeoutId=setTimeout(function(){controller.abort()},15000);
-
-  try{
-    var response=await fetch(proxyUrl,{
-      signal:controller.signal,
-      mode:'cors',
-      credentials:'omit',
-      headers:{'Accept':'image/*'}
-    });
-    clearTimeout(timeoutId);
-    if(!response.ok)throw new Error('HTTP '+response.status);
-    var blob=await response.blob();
-    if(!blob||!blob.size)throw new Error('Empty blob');
-    var dataUrl=await new Promise(function(resolve,reject){
-      var reader=new FileReader();
-      reader.onload=function(){resolve(reader.result)};
-      reader.onerror=function(){reject('Read error')};
-      reader.readAsDataURL(blob);
-    });
-    imageCache.set(url,dataUrl);
-    return dataUrl;
-  }catch(e){
-    clearTimeout(timeoutId);
-    imageCache.set(url,'');
-    return '';
+  var attempts=getImageFetchAttempts(url);
+  for(var i=0;i<attempts.length;i++){
+    var proxyUrl=attempts[i].url;
+    // direct attempt uses no proxy — skip custom headers
+    var isDirect=attempts[i].via==='direct';
+    var controller=new AbortController();
+    var timeoutId=setTimeout(function(){controller.abort()},15000);
+    try{
+      var response=await fetch(proxyUrl,{
+        signal:controller.signal,
+        mode:'cors',
+        credentials:'omit',
+        headers: isDirect ? {} : {'Accept':'image/*'}
+      });
+      clearTimeout(timeoutId);
+      if(!response.ok)throw new Error('HTTP '+response.status);
+      var blob=await response.blob();
+      if(!blob||!blob.size)throw new Error('Empty blob');
+      var dataUrl=await new Promise(function(resolve,reject){
+        var reader=new FileReader();
+        reader.onload=function(){resolve(reader.result)};
+        reader.onerror=function(){reject('Read error')};
+        reader.readAsDataURL(blob);
+      });
+      imageCache.set(url,dataUrl);
+      return dataUrl;
+    }catch(e){
+      clearTimeout(timeoutId);
+      // try next proxy
+    }
   }
+  imageCache.set(url,'');
+  return '';
 }
 
 function collectScreenshotImageTasks(documentRef){
@@ -302,28 +336,71 @@ function waitForDocumentImages(documentRef,timeoutMs){
   });
 }
 
-async function fetchHtml(url){
-  var proxyUrl='https://html-fetcher.budi-indra94.workers.dev/?url='+encodeURIComponent(url);
-  var controller=new AbortController();
-  var timeoutId=setTimeout(function(){controller.abort()},20000);
-  try{
-    updateProgress('Fetching via worker...');
-    var response=await fetch(proxyUrl,{
-      signal:controller.signal,
-      headers:{'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}
-    });
-    clearTimeout(timeoutId);
-    if(!response.ok)throw new Error('HTTP '+response.status);
-    var html=await response.text();
-    if(!html||html.length<100||!/<html|<!doctype|<body/i.test(html)){
-      throw new Error('Invalid or empty HTML response');
-    }
-    return html;
-  }catch(e){
-    clearTimeout(timeoutId);
-    throw new Error('Fetch failed: '+(e.message||'unknown'));
-  }
+// ── fetchRemoteHtmlFast — mirror eDM Helper js/pages-layout-checker.js:1008 ──
+function getAllowedTargetHost(){
+  // Screenshot allows any host; return '' = no restriction
+  // If you need allowlist, return e.g. 'mail.hsbc.com.hk' and it will be enforced
+  return '';
 }
+function validateTargetUrl(url){
+  var parsed;
+  try{ parsed=new URL(url); }catch(e){ throw new Error('Invalid URL'); }
+  if(!/^https?:$/i.test(parsed.protocol))throw new Error('Only http/https allowed');
+  var allowedHost=getAllowedTargetHost();
+  if(allowedHost){
+    var host=parsed.hostname.toLowerCase();
+    if(host!==allowedHost)throw new Error('Host not allowed: '+host+' (only '+allowedHost+')');
+  }
+  return parsed.href;
+}
+
+async function fetchRemoteHtmlFast(url){
+  var targetUrl=validateTargetUrl(url);
+  var providerKey=getFetcherProviderKey();
+  var provider=FETCHER_PROVIDERS[providerKey]||FETCHER_PROVIDERS['google-apps-script'];
+  var fetchUrl=provider.buildUrl(targetUrl);
+  var isGas=providerKey==='google-apps-script';
+  var maxRetries=isGas?2:0;
+  var lastError=null;
+
+  for(var attempt=0;attempt<=maxRetries;attempt++){
+    if(attempt>0){
+      updateProgress('Retrying ('+attempt+'/'+maxRetries+') via '+provider.label+'...');
+      await new Promise(function(r){ setTimeout(r,2000); });
+    }else{
+      updateProgress('Fetching via '+provider.label+'...');
+    }
+
+    var controller=new AbortController();
+    var timeoutMs=isGas?15000:20000;
+    var timeoutId=setTimeout(function(){controller.abort()},timeoutMs);
+    try{
+      var response=await fetch(fetchUrl,{
+        signal:controller.signal,
+        headers:{'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}
+      });
+      clearTimeout(timeoutId);
+      if(!response.ok)throw new Error('HTTP '+response.status);
+      var html=await response.text();
+      if(!html||html.length<100||!/<html|<!doctype|<body/i.test(html)){
+        // GAS may return JSON error when host blocked
+        if(html&&/<"error"/i.test(html))throw new Error(html.slice(0,400));
+        throw new Error('Invalid or empty HTML response ('+html.length+' bytes)');
+      }
+      return html;
+    }catch(e){
+      clearTimeout(timeoutId);
+      lastError=e;
+      var isAbort=(e&&e.name==='AbortError')||/aborted/i.test(e.message||'');
+      if(isAbort)lastError=new Error('Timeout after '+(timeoutMs/1000)+'s');
+      if(attempt>=maxRetries)break;
+    }
+  }
+  throw new Error('Fetch failed: '+(lastError&&(lastError.message||lastError)||'unknown'));
+}
+
+// Legacy alias used by capture()
+async function fetchHtml(url){ return fetchRemoteHtmlFast(url); }
 
 async function capture(){
   var raw=$('#url-input').value.trim();
@@ -465,10 +542,42 @@ async function capture(){
     
   }catch(error){
     console.error('Screenshot error:',error);
-    updateProgress('Failed: '+error.message+'. Try again.');
+    showFetchErrorOverlay(error);
     hideProgressBar();
   }finally{
-    document.body.removeChild(iframe);
+    var leftover=document.body.querySelectorAll('iframe[style*="-9999px"]');
+    leftover.forEach(function(el){ try{el.remove()}catch(e){} });
+  }
+}
+
+// ── Error overlay + Retry — mirror eDM Helper js/pages-layout-checker.js:460-482 ──
+function showFetchErrorOverlay(error){
+  var msg=(error&&error.message)||String(error||'Unknown error');
+  var isHostError=/Host not allowed/i.test(msg);
+  var isTimeout=/Timeout/i.test(msg);
+  var hint=isHostError ? 'Host not allowed. For Screenshot any host is allowed — check GAS deployment.' : isTimeout ? 'GAS cold start? Click Retry (auto-retry 2× with 2s delay is already done).' : 'Try a different URL or switch Fetcher provider.';
+  updateProgress('Failed: '+msg);
+  var preview=$('#ss-preview');
+  if(!preview)return;
+  var wrap=document.createElement('div');
+  wrap.className='ss-error-overlay';
+  wrap.innerHTML='<div class="ss-error-title">Capture failed</div><div class="ss-error-msg"></div><div class="ss-error-hint"></div><div class="ss-error-actions"><button id="ss-retry" class="capture-btn">Retry</button><button id="ss-retry-fallback" class="download-btn" style="display:none">Try Worker fallback</button></div>';
+  wrap.querySelector('.ss-error-msg').textContent=msg;
+  wrap.querySelector('.ss-error-hint').textContent=hint;
+  preview.innerHTML='';
+  preview.appendChild(wrap);
+  var retryBtn=wrap.querySelector('#ss-retry');
+  if(retryBtn)retryBtn.addEventListener('click',function(){ capture(); });
+  // offer Worker fallback when GAS fails
+  if(getFetcherProviderKey()==='google-apps-script'){
+    var fb=wrap.querySelector('#ss-retry-fallback');
+    if(fb){
+      fb.style.display='inline-block';
+      fb.addEventListener('click',function(){
+        setFetcherProviderKey('worker');
+        capture();
+      });
+    }
   }
 }
 
@@ -538,4 +647,13 @@ $('#url-input').addEventListener('keydown',function(e){
   if(e.key==='Enter')capture();
 });
 $('#download-btn').addEventListener('click',download);
+
+// Fetcher selector persistence (mirror eDM Helper FETCHER_PROVIDER_KEY)
+(function initFetcherSelect(){
+  var sel=document.getElementById('ss-fetcher');
+  if(!sel)return;
+  var saved=getFetcherProviderKey();
+  sel.value=saved;
+  sel.addEventListener('change',function(){ setFetcherProviderKey(sel.value); });
+})();
 })();
