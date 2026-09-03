@@ -22,34 +22,48 @@
         <h1>Convert Text Case</h1>
         <p class="lead">Paste or type your text below, then choose a case to convert it instantly.</p>
 
-        <div class="input-card">
-          <textarea id="text-input" placeholder="Paste or type your text here..." spellcheck="false"></textarea>
-        </div>
+        <div class="panes">
+          <div class="pane">
+            <div class="pane-head">
+              <span class="pane-label">Input</span>
+              <span id="input-stats" class="pane-stats">0 characters · 0 words · 0 lines</span>
+            </div>
+            <div class="input-card">
+              <textarea id="text-input" placeholder="Paste or type your text here..." spellcheck="false"></textarea>
+            </div>
+          </div>
 
-        <div class="stats-bar">
-          <span id="char-count">0 characters</span>
-          <span id="word-count">0 words</span>
-          <span id="line-count">0 lines</span>
-        </div>
+          <div class="case-buttons">
+            <button class="case-btn" data-case="sentence" title="Capitalize first letter of each sentence">Sentence case</button>
+            <button class="case-btn" data-case="lower" title="Convert all text to lowercase">lower case</button>
+            <button class="case-btn" data-case="upper" title="Convert all text to UPPER CASE">UPPER CASE</button>
+            <button class="case-btn" data-case="capitalized" title="Capitalize First Letter Of Each Word">Capitalized Case</button>
+            <button class="case-btn" data-case="alternating" title="aLtErNaTiNg cAsE">aLtErNaTiNg cAsE</button>
+            <button class="case-btn" data-case="title" title="Title Case (articles/prepositions stay lowercase)">Title Case</button>
+            <button class="case-btn" data-case="inverse" title="iNVERSE cASE - swap case of each letter">InVeRsE CaSe</button>
+            <button class="case-btn" data-case="trimspaces" title="Remove double/triple+ spaces and leading/trailing whitespace">Trim Spaces</button>
+          </div>
 
-        <div class="case-buttons">
-          <button class="case-btn" data-case="sentence" title="Capitalize first letter of each sentence">Sentence case</button>
-          <button class="case-btn" data-case="lower" title="Convert all text to lowercase">lower case</button>
-          <button class="case-btn" data-case="upper" title="Convert all text to UPPER CASE">UPPER CASE</button>
-          <button class="case-btn" data-case="capitalized" title="Capitalize First Letter Of Each Word">Capitalized Case</button>
-          <button class="case-btn" data-case="alternating" title="aLtErNaTiNg cAsE">aLtErNaTiNg cAsE</button>
-          <button class="case-btn" data-case="title" title="Title Case (articles/prepositions stay lowercase)">Title Case</button>
-          <button class="case-btn" data-case="inverse" title="iNVERSE cASE - swap case of each letter">InVeRsE CaSe</button>
+          <div class="pane">
+            <div class="pane-head">
+              <span class="pane-label">Output</span>
+              <div class="pane-actions">
+                <button id="copy-btn" class="pane-action-btn" title="Copy output to clipboard">
+                  <span class="action-icon">📋</span> Copy
+                </button>
+                <button id="download-btn" class="pane-action-btn" title="Download output as text file">
+                  <span class="action-icon">💾</span> Download
+                </button>
+              </div>
+            </div>
+            <div class="input-card output-card">
+              <textarea id="text-output" placeholder="Converted text will appear here..." spellcheck="false" readonly></textarea>
+            </div>
+          </div>
         </div>
 
         <div class="action-buttons">
-          <button id="copy-btn" class="action-btn" title="Copy to clipboard">
-            <span class="action-icon">📋</span> Copy
-          </button>
-          <button id="download-btn" class="action-btn" title="Download as text file">
-            <span class="action-icon">💾</span> Download
-          </button>
-          <button id="clear-btn" class="action-btn" title="Clear text">
+          <button id="clear-btn" class="action-btn" title="Clear both">
             <span class="action-icon">✕</span> Clear
           </button>
         </div>

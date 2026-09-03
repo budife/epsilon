@@ -1,26 +1,23 @@
 (function () {
   'use strict';
 
-  const input = document.getElementById('text-input');
-  const charCount = document.getElementById('char-count');
-  const wordCount = document.getElementById('word-count');
-  const lineCount = document.getElementById('line-count');
-  const copyBtn = document.getElementById('copy-btn');
-  const downloadBtn = document.getElementById('download-btn');
-  const clearBtn = document.getElementById('clear-btn');
+  var input = document.getElementById('text-input');
+  var output = document.getElementById('text-output');
+  var inputStats = document.getElementById('input-stats');
+  var copyBtn = document.getElementById('copy-btn');
+  var downloadBtn = document.getElementById('download-btn');
+  var clearBtn = document.getElementById('clear-btn');
 
   function updateStats() {
-    const text = input.value;
-    const chars = text.length;
-    const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
-    const lines = text === '' ? 0 : text.split(/\r\n|\r|\n/).length;
-    charCount.textContent = `${chars} character${chars !== 1 ? 's' : ''}`;
-    wordCount.textContent = `${words} word${words !== 1 ? 's' : ''}`;
-    lineCount.textContent = `${lines} line${lines !== 1 ? 's' : ''}`;
+    var text = input.value;
+    var chars = text.length;
+    var words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+    var lines = text === '' ? 0 : text.split(/\r\n|\r|\n/).length;
+    inputStats.textContent = chars + ' character' + (chars !== 1 ? 's' : '') + ' \u00b7 ' + words + ' word' + (words !== 1 ? 's' : '') + ' \u00b7 ' + lines + ' line' + (lines !== 1 ? 's' : '');
   }
 
   function sentenceCase(text) {
-    return text.toLowerCase().replace(/(^\s*\w|[.!?]\s+\w)/g, (match) => match.toUpperCase());
+    return text.toLowerCase().replace(/(^\s*\w|[.!?]\s+\w)/g, function (match) { return match.toUpperCase(); });
   }
 
   function lowerCase(text) {
@@ -32,12 +29,12 @@
   }
 
   function capitalizedCase(text) {
-    return text.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
+    return text.toLowerCase().replace(/\b\w/g, function (char) { return char.toUpperCase(); });
   }
 
   function alternatingCase(text) {
-    let upper = false;
-    return text.split('').map((char) => {
+    var upper = false;
+    return text.split('').map(function (char) {
       if (/[a-zA-Z]/.test(char)) {
         upper = !upper;
         return upper ? char.toUpperCase() : char.toLowerCase();
@@ -47,8 +44,8 @@
   }
 
   function titleCase(text) {
-    const smallWords = new Set(['a', 'an', 'the', 'and', 'but', 'or', 'for', 'nor', 'on', 'at', 'to', 'from', 'by', 'in', 'of', 'with', 'as']);
-    return text.toLowerCase().replace(/\b\w+[\w']*\b/g, (word, offset, str) => {
+    var smallWords = new Set(['a', 'an', 'the', 'and', 'but', 'or', 'for', 'nor', 'on', 'at', 'to', 'from', 'by', 'in', 'of', 'with', 'as']);
+    return text.toLowerCase().replace(/\b\w+[\w']*\b/g, function (word, offset, str) {
       if (offset === 0 || str[offset - 2] === '.' || str[offset - 2] === '!' || str[offset - 2] === '?') {
         return word.charAt(0).toUpperCase() + word.slice(1);
       }
@@ -60,7 +57,7 @@
   }
 
   function inverseCase(text) {
-    return text.split('').map((char) => {
+    return text.split('').map(function (char) {
       if (char === char.toUpperCase() && char !== char.toLowerCase()) {
         return char.toLowerCase();
       }
@@ -71,55 +68,68 @@
     }).join('');
   }
 
-  const converters = {
+  function trimSpaces(text) {
+    return text.replace(/  +/g, ' ').trim();
+  }
+
+  var converters = {
     sentence: sentenceCase,
     lower: lowerCase,
     upper: upperCase,
     capitalized: capitalizedCase,
     alternating: alternatingCase,
     title: titleCase,
-    inverse: inverseCase
+    inverse: inverseCase,
+    trimspaces: trimSpaces
   };
 
-  document.querySelectorAll('.case-btn').forEach((button) => {
-    button.addEventListener('click', () => {
-      const caseType = button.dataset.case;
-      const converter = converters[caseType];
+  document.querySelectorAll('.case-btn').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var caseType = button.dataset.case;
+      var converter = converters[caseType];
       if (converter && input.value) {
-        input.value = converter(input.value);
-        updateStats();
+        output.value = converter(input.value);
       }
     });
   });
 
-  copyBtn.addEventListener('click', async () => {
-    if (!input.value) return;
+  input.addEventListener('input', function () {
+    updateStats();
+    if (input.value) {
+      output.value = input.value;
+    } else {
+      output.value = '';
+    }
+  });
+
+  copyBtn.addEventListener('click', async function () {
+    if (!output.value) return;
     try {
-      await navigator.clipboard.writeText(input.value);
-      const original = copyBtn.innerHTML;
-      copyBtn.innerHTML = '<span class="action-icon">✓</span> Copied!';
-      setTimeout(() => { copyBtn.innerHTML = original; }, 1500);
+      await navigator.clipboard.writeText(output.value);
+      var original = copyBtn.innerHTML;
+      copyBtn.innerHTML = '<span class="action-icon">\u2713</span> Copied!';
+      setTimeout(function () { copyBtn.innerHTML = original; }, 1500);
     } catch (e) {
-      input.select();
+      output.select();
       document.execCommand('copy');
     }
   });
 
-  downloadBtn.addEventListener('click', () => {
-    if (!input.value) return;
-    const blob = new Blob([input.value], { type: 'text/plain' });
-    const link = document.createElement('a');
+  downloadBtn.addEventListener('click', function () {
+    if (!output.value) return;
+    var blob = new Blob([output.value], { type: 'text/plain' });
+    var link = document.createElement('a');
     link.download = 'converted-text.txt';
     link.href = URL.createObjectURL(blob);
     link.click();
-    setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+    setTimeout(function () { URL.revokeObjectURL(link.href); }, 1000);
   });
 
-  clearBtn.addEventListener('click', () => {
+  clearBtn.addEventListener('click', function () {
     input.value = '';
+    output.value = '';
     updateStats();
   });
 
-  input.addEventListener('input', updateStats);
   updateStats();
 }());
