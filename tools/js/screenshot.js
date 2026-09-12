@@ -354,6 +354,11 @@ function validateTargetUrl(url){
   return parsed.href;
 }
 
+function imagePreviewHtml(targetUrl, mime, base64){
+  var safeMime=/^image\/[a-z0-9.+-]+$/i.test(mime||'')?mime:'image/jpeg';
+  return '<!doctype html><html><head><base href="'+targetUrl.replace(/"/g,'%22')+'"></head><body style="margin:0;background:#fff"><img src="data:'+safeMime+';base64,'+base64+'" style="display:block;max-width:100%;height:auto"></body></html>';
+}
+
 async function fetchRemoteHtmlFast(url){
   var targetUrl=validateTargetUrl(url);
   var providerKey=getFetcherProviderKey();
@@ -382,6 +387,12 @@ async function fetchRemoteHtmlFast(url){
       clearTimeout(timeoutId);
       if(!response.ok)throw new Error('HTTP '+response.status);
       var html=await response.text();
+      try{
+        var payload=JSON.parse(html);
+        if(payload&&payload.type==='image'&&payload.data){
+          return imagePreviewHtml(targetUrl,payload.mime,payload.data);
+        }
+      }catch(jsonError){}
       var looksLikeHtml=/<\s*(?:!doctype|html|head|title|body|main|section|div|table)\b/i.test(html||'');
       if(!html||html.length<100||!looksLikeHtml){
         // GAS may return JSON error when host blocked

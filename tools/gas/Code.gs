@@ -53,6 +53,15 @@ function doGet(e) {
         .setMimeType(ContentService.MimeType.TEXT);
     }
 
+    var contentType = String(resp.getHeaders()['Content-Type'] || resp.getBlob().getContentType() || '').toLowerCase();
+    if (/^image\//i.test(contentType)) {
+      return ContentService.createTextOutput(JSON.stringify({
+        type: 'image',
+        mime: contentType.split(';')[0],
+        data: Utilities.base64Encode(resp.getBlob().getBytes())
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
     var html = resp.getContentText();
     // GAS otomatis allow CORS untuk fetch client; deploy sebagai Web App "Anyone" + "Execute as me"
     return ContentService.createTextOutput(html).setMimeType(ContentService.MimeType.HTML);
