@@ -15,6 +15,7 @@ Open `index.html` directly in Chrome or Edge, or use VS Code Live Server on port
 | Convert Text | `tools/converttext.html` | Convert text case and clean repeated spaces with separate input and output panes. |
 | Website Screenshot | `tools/screenshot.html` | Fetch and capture remote HTML as PNG, JPG, or PDF with progress reporting. |
 | Template Assembler | `tools/assembler.html` | Combine a layout image with selectable header and footer templates. |
+| Image Studio | `tools/image-studio.html` | Resize, convert, and rename multiple images locally in the browser. |
 
 ## Project Notes
 

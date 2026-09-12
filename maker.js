@@ -72,6 +72,7 @@ document.querySelectorAll('.creator-link').forEach(function(link){
     panel.className='tool-panel'+(category[0]==='existing'?' active':'');
     panel.dataset.categoryPanel=category[0];
     if(category[0]==='existing')panel.appendChild(grid);
+    else if(category[0]==='prepare')panel.innerHTML='<div class="tool-grid"><a class="tool-card" href="tools/image-studio.html"><div class="tool-icon">▧</div><h3>Image Studio</h3><p>Resize, convert, compress, and rename images locally in your browser.</p><span class="tool-arrow">Open tool →</span></a></div>';
     else panel.innerHTML='<div class="tool-empty"><strong>'+category[2]+'</strong><span>'+category[3]+'</span></div>';
     toolsWrap.appendChild(panel);
     panels[category[0]]=panel;

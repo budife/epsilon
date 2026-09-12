@@ -2,6 +2,11 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.1.0 — 13 Sep 2026
+
+- Added Image Studio MVP under the Prepare category.
+- Added local image resize, PNG/JPG/WebP conversion, quality control, preview, and filename prefix/suffix export.
+
 ## v1.0.9 — 12 Sep 2026
 
 - Made The Maker fit the viewport with scrolling limited to the Recent changes list.

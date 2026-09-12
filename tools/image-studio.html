@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Image Studio — Epsilon</title>
+  <link rel="icon" type="image/png" href="../assets/epsilon-logo.png">
+  <link rel="stylesheet" href="image-studio.css">
+  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="../maker.css">
+</head>
+<body>
+  <main class="image-app">
+    <header class="image-header">
+      <a class="image-brand" href="../index.html"><span class="image-brand-mark">E</span><span>Epsilon · Image Studio</span></a>
+      <div class="head-footer"><p>&copy; 2026 Epsilon · crafted by <a href="../the-maker.html">budd</a></p></div>
+    </header>
+    <div class="image-layout">
+      <section class="image-main">
+        <div class="image-title"><div><p class="eyebrow">PREPARE ASSETS</p><h1>Image Studio</h1></div><p>Resize, convert, compress, and rename images locally in your browser.</p></div>
+        <div class="image-columns">
+          <div class="image-controls">
+            <label class="drop-zone" for="image-input"><span class="upload-symbol">↑</span><strong>Drop images here</strong><small>PNG, JPG, or WebP · multiple files supported</small><span class="choose-button">Choose Images</span></label>
+            <input id="image-input" type="file" accept="image/png,image/jpeg,image/webp" multiple hidden>
+            <div id="file-summary" class="file-summary">No images selected</div>
+            <div class="control-card">
+              <div class="field"><label for="preset">Resize preset</label><select id="preset"><option value="original">Original size</option><option value="1080x1080">Instagram Square · 1080 × 1080</option><option value="1080x1350">Instagram Portrait · 1080 × 1350</option><option value="1080x1920">Story / Reels · 1080 × 1920</option><option value="1200x627">LinkedIn · 1200 × 627</option><option value="1920x1080">Presentation · 1920 × 1080</option><option value="custom">Custom size</option></select></div>
+              <div class="size-fields"><div class="field"><label for="width">Width</label><input id="width" type="number" min="1" placeholder="Width"></div><div class="field"><label for="height">Height</label><input id="height" type="number" min="1" placeholder="Height"></div></div>
+              <label class="check-field"><input id="lock-ratio" type="checkbox" checked> Keep aspect ratio</label>
+              <div class="field"><label for="format">Output format</label><select id="format"><option value="image/jpeg">JPG</option><option value="image/png">PNG</option><option value="image/webp">WebP</option></select></div>
+              <div class="field quality-field"><label for="quality">Quality <output id="quality-value">90%</output></label><input id="quality" type="range" min="10" max="100" value="90"></div>
+              <div class="rename-fields"><div class="field"><label for="prefix">Prefix</label><input id="prefix" placeholder="e.g. client-"></div><div class="field"><label for="suffix">Suffix</label><input id="suffix" placeholder="e.g. -final"></div></div>
+            </div>
+            <div class="image-actions"><button id="process" class="primary-button" disabled>Process Images</button><button id="clear" class="secondary-button">Clear</button></div>
+          </div>
+          <section class="results-card"><div class="results-head"><div><p class="eyebrow">OUTPUT</p><h2>Preview</h2></div><button id="download-all" class="download-button" disabled>Download All</button></div><div id="results" class="results"><div class="empty-state">Your processed images will appear here.</div></div></section>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="image-studio.js"></script>
+  <div id="maker-modal" class="modal-overlay"><div class="maker-content"><button class="maker-close" onclick="closeMakerModal()">✕</button><div class="maker-hero"><div class="maker-avatar">👨‍💻</div><h3 class="maker-name">budd</h3><p class="maker-role">Budi Indra Ilham · Developer</p></div><div class="maker-panel"><p class="maker-bio">Maker of Epsilon Toolkit.</p></div></div></div>
+  <script src="../maker.js"></script>
+</body>
+</html>
