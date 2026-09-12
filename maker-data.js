@@ -1,0 +1,22 @@
+(function(){
+  'use strict';
+
+  window.EpsilonMakerData={
+    name:'budd',
+    fullName:'Budi Indra Ilham',
+    role:'Developer & Maker of Epsilon',
+    tagline:'Developer yang suka ngoding sambil ngopi.',
+    bio:'Mantan gajian yang jago ngolah angka di Excel, sekarang bikin Epsilon — kumpulan tool kecil buat urusan harian: report kurs, QR code, screenshot website, sampai assemble template email. Suka bikin hal yang praktis, cepat, dan rapi.',
+    github:'https://github.com/budife',
+    instagram:'https://instagram.com/budife.psd/',
+    linkedin:'https://linkedin.com/in/budifelt/',
+    changes:[
+      {version:'v1.0.5',date:'12 Sep 2026',title:'Screenshot flow lebih jelas',description:'Progress capture sekarang menampilkan tahapan, durasi tiap proses, total waktu, dan status koneksi Google Apps Script.'},
+      {version:'v1.0.4',date:'19 Aug 2026',title:'Website Screenshot upgrade',description:'Tombol Download di samping Capture, nama file otomatis sesuai link, layout 2 kolom, dan perbaikan crop email blast HSBC.'},
+      {version:'v1.0.3',date:'19 Aug 2026',title:'Template Assembler baru',description:'Gabung header, layout image, dan footer jadi satu gambar utuh dengan preview dan download PNG/JPG.'},
+      {version:'v1.0.2',date:'19 Aug 2026',title:'Renaming & tidy up',description:'EGA menjadi FX Rate Daily Currency Report, footer semua page pindah ke header meet the maker, dan code dirapikan.'},
+      {version:'v1.0.1',date:'18 Aug 2026',title:'QR & tools setup',description:'QR Code Generator, Website Screenshot, dan Convert Text resmi masuk ke Epsilon Toolkit.'},
+      {version:'v1.0.0',date:'14 Aug 2026',title:'Epsilon lahir',description:'Toolkit pertama untuk report kurs dari Excel counter rate, di-host di GitHub Pages.'}
+    ]
+  };
+}());
