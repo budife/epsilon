@@ -41,7 +41,7 @@ function loadHtml2Canvas(){
   if(html2canvasPromise)return html2canvasPromise;
   html2canvasPromise=new Promise(function(resolve,reject){
     var script=document.createElement('script');
-    script.src='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+    script.src='../libs/html2canvas.min.js';
     script.async=true;
     script.onload=function(){resolve(window.html2canvas)};
     script.onerror=function(){reject(new Error('Unable to load screenshot library'))};
