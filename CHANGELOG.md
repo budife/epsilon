@@ -2,6 +2,10 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.0.8 — 12 Sep 2026
+
+- Applied viewport-first layout behavior to The Maker page and documented the rule for future pages: only inner content areas may scroll when needed.
+
 ## v1.0.7 — 12 Sep 2026
 
 - Changed maker identity links across the toolkit to open `/the-maker` directly instead of opening the maker modal.

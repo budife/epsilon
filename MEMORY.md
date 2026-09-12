@@ -12,6 +12,7 @@
 - Ink: `#17212b`.
 - Default font: Univers 45 Light with Arial fallback.
 - Prefer focused layouts, compact controls, clear status feedback, and responsive mobile behavior.
+- Treat each page as a viewport-first layout: fit the main experience to the open monitor/screen, keep the page itself from scrolling, and use an inner scroll area only when content exceeds the available height.
 
 ## Tools
 

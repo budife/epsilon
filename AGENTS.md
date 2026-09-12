@@ -97,6 +97,7 @@ Tidak ada unit test / build. Verifikasi manual:
 - **Jangan ubah `libs/`** tanpa alasan kuat + verifikasi offline tetap jalan.
 - **Screenshot Worker:** jika ubah flow `tools/screenshot.html` / `js/*`, pastikan `sandbox="allow-same-origin"` dan lifecycle `srcdoc` tetap benar (lihat git log `127ff7f`, `615d2a2`).
 - **Verifikasi via browser** setelah perubahan (bukan cuma `git diff`).
+- **Layout viewport-first:** halaman harus menyesuaikan tinggi viewport; jangan membuat seluruh body/page scroll. Jika konten terlalu panjang, batasi overflow ke area konten internal yang relevan.
 
 ## 9. Yang Tidak Boleh Dilakukan
 
