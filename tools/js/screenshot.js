@@ -651,9 +651,17 @@ $('#download-btn').addEventListener('click',download);
 
 // Fetcher selector persistence (mirror eDM Helper FETCHER_PROVIDER_KEY)
 (function initFetcherSelect(){
-  var sel=document.getElementById('ss-fetcher');
-  if(!sel)return;
-  var saved=getFetcherProviderKey();
+   var sel=document.getElementById('ss-fetcher');
+   if(!sel)return;
+   var optionsCard=sel.closest('.options-card');
+   if(optionsCard&&!optionsCard.querySelector('.ss-tip')){
+     var tip=document.createElement('div');
+     tip.className='ss-tip';
+     tip.innerHTML='<strong>Tip:</strong> Google Apps Script bisa membutuhkan beberapa detik lebih lama saat pertama kali dipakai karena cold start. Ini normal, terutama untuk halaman HSBC atau halaman dengan banyak gambar.';
+     tip.style.cssText='margin:0 0 16px;padding:10px 12px;border:1px solid #f0d394;border-radius:6px;background:#fff8e8;color:#8a5a00;font-size:12px;line-height:1.5';
+     optionsCard.insertBefore(tip,optionsCard.firstChild);
+   }
+   var saved=getFetcherProviderKey();
   sel.value=saved;
   sel.addEventListener('change',function(){ setFetcherProviderKey(sel.value); });
 })();
