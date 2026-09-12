@@ -382,7 +382,8 @@ async function fetchRemoteHtmlFast(url){
       clearTimeout(timeoutId);
       if(!response.ok)throw new Error('HTTP '+response.status);
       var html=await response.text();
-      if(!html||html.length<100||!/<html|<!doctype|<body/i.test(html)){
+      var looksLikeHtml=/<\s*(?:!doctype|html|head|title|body|main|section|div|table)\b/i.test(html||'');
+      if(!html||html.length<100||!looksLikeHtml){
         // GAS may return JSON error when host blocked
         if(html&&/<"error"/i.test(html))throw new Error(html.slice(0,400));
         throw new Error('Invalid or empty HTML response ('+html.length+' bytes)');
