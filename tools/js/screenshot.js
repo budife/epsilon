@@ -162,9 +162,13 @@ async function checkGasStatus(button, status){
     if(!payload.ok)throw new Error('Invalid health response');
     status.textContent='Google Apps Script ready ('+(elapsed/1000).toFixed(1)+'s).';
     status.className='ss-gas-status ready';
+    status.style.background='#eaf7ef';
+    status.style.color='#27834a';
   }catch(error){
     status.textContent=error.name==='AbortError'?'Google Apps Script timed out.':'Google Apps Script unavailable.';
     status.className='ss-gas-status unavailable';
+    status.style.background='#fff0f0';
+    status.style.color='#c0392b';
   }finally{
     clearTimeout(timeoutId);
     button.disabled=false;
