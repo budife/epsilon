@@ -2,6 +2,11 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.2.0 — 13 Sep 2026
+
+- Added Color Studio MVP under the Check category.
+- Added local color picker, HEX/RGB/HSL values, manual palette, and shades/tints generator.
+
 ## v1.1.0 — 13 Sep 2026
 
 - Added Image Studio MVP under the Prepare category.

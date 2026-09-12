@@ -16,6 +16,7 @@ Open `index.html` directly in Chrome or Edge, or use VS Code Live Server on port
 | Website Screenshot | `tools/screenshot.html` | Fetch and capture remote HTML as PNG, JPG, or PDF with progress reporting. |
 | Template Assembler | `tools/assembler.html` | Combine a layout image with selectable header and footer templates. |
 | Image Studio | `tools/image-studio.html` | Resize, convert, and rename multiple images locally in the browser. |
+| Color Studio | `tools/color-studio.html` | Explore HEX/RGB/HSL values, build palettes, and generate shades and tints. |
 
 ## Project Notes
 

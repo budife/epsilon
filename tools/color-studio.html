@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Color Studio — Epsilon</title>
+  <link rel="icon" type="image/png" href="../assets/epsilon-logo.png">
+  <link rel="stylesheet" href="color-studio.css">
+  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="../maker.css">
+</head>
+<body>
+  <main class="color-app">
+    <header class="color-header"><a class="color-brand" href="../index.html"><span class="color-brand-mark">E</span><span>Epsilon · Color Studio</span></a><div class="color-header-note">Local color tools</div></header>
+    <div class="color-layout">
+      <section class="color-main">
+        <div class="color-title"><div><p class="eyebrow">CHECK COLORS</p><h1>Color Studio</h1></div><p>Explore color values, build a palette, and generate useful shades and tints.</p></div>
+        <div class="color-grid">
+          <section class="picker-card"><div class="picker-top"><input id="color-picker" type="color" value="#db0011"><div><label for="hex-input">HEX value</label><input id="hex-input" class="hex-input" value="#DB0011" maxlength="7" spellcheck="false"></div></div><div class="value-grid"><div><span>RGB</span><button data-copy="rgb-value" id="rgb-value">219, 0, 17</button></div><div><span>HSL</span><button data-copy="hsl-value" id="hsl-value">355°, 100%, 43%</button></div></div><p id="copy-status" class="copy-status">Click a value to copy it.</p></section>
+          <section class="palette-card"><div class="section-head"><div><p class="eyebrow">PALETTE</p><h2>Your palette</h2></div><button id="add-color" class="small-button">Add current</button></div><div id="palette" class="palette"><div class="palette-empty">Add colors from the picker.</div></div><button id="copy-css" class="wide-button">Copy CSS variables</button></section>
+          <section class="shades-card"><div class="section-head"><div><p class="eyebrow">GENERATE</p><h2>Shades & tints</h2></div><span id="base-label">#DB0011</span></div><div id="shade-list" class="shade-list"></div></section>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="color-studio.js"></script>
+  <script src="../maker.js"></script>
+</body>
+</html>

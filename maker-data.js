@@ -11,6 +11,7 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v1.2.0',date:'13 Sep 2026',title:'Color Studio MVP',description:'Menambahkan color picker, konversi HEX/RGB/HSL, palette manual, serta generator shades dan tints lokal.'},
       {version:'v1.1.0',date:'13 Sep 2026',title:'Image Studio MVP',description:'Menambahkan tool untuk resize, convert format, mengatur quality, dan rename beberapa gambar langsung di browser.'},
       {version:'v1.0.9',date:'12 Sep 2026',title:'The Maker viewport-fit & change history',description:'Halaman maker kini fit dalam viewport, hanya daftar recent changes yang scroll, dan riwayat ditampilkan bertahap 10 item lewat View more changes.'},
       {version:'v1.0.8',date:'12 Sep 2026',title:'Viewport-first page layout',description:'Halaman maker dan halaman baru diarahkan menyesuaikan viewport monitor; scroll hanya muncul di area konten saat isi melebihi tinggi layar.'},
