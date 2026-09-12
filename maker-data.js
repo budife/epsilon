@@ -11,6 +11,7 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v1.0.7',date:'12 Sep 2026',title:'The Maker jadi halaman utama',description:'Identitas maker di semua halaman sekarang langsung menuju /the-maker, menggantikan modal maker sebagai akses utama.'},
       {version:'v1.0.6',date:'12 Sep 2026',title:'The Maker page & project memory',description:'Menambahkan halaman profil maker, recent changes terpusat, README, CHANGELOG, MEMORY, dan aturan agar changelog selalu sinkron setelah commit.'},
       {version:'v1.0.5',date:'12 Sep 2026',title:'Screenshot flow lebih jelas',description:'Progress capture sekarang menampilkan tahapan, durasi tiap proses, total waktu, dan status koneksi Google Apps Script.'},
       {version:'v1.0.4',date:'19 Aug 2026',title:'Website Screenshot upgrade',description:'Tombol Download di samping Capture, nama file otomatis sesuai link, layout 2 kolom, dan perbaikan crop email blast HSBC.'},

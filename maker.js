@@ -1,5 +1,5 @@
 function openMakerModal(){
-  document.getElementById('maker-modal').classList.add('active');
+  window.location.href='the-maker.html';
 }
 function closeMakerModal(){
   document.getElementById('maker-modal').classList.remove('active');
@@ -21,5 +21,13 @@ document.addEventListener('click',function(e){
 document.querySelectorAll('.maker-tab').forEach(function(btn){
   btn.addEventListener('click',function(){
     makerTab(btn.getAttribute('data-tab'));
+  });
+});
+
+document.querySelectorAll('.creator-link').forEach(function(link){
+  link.removeAttribute('onclick');
+  link.setAttribute('role','link');
+  link.addEventListener('click',function(){
+    window.location.href=link.getAttribute('href')||'the-maker.html';
   });
 });
