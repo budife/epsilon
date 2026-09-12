@@ -15,6 +15,11 @@
  */
 
 function doGet(e) {
+  if (e.parameter.ping === "1") {
+    return ContentService.createTextOutput(JSON.stringify({ok: true, service: "epsilon-screenshot-gas"}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
   var target = e.parameter.url;
   if (!target) {
     return ContentService.createTextOutput(JSON.stringify({error: "Missing url parameter"}))

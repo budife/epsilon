@@ -81,7 +81,7 @@ function ensureProgressStyles(){
   if(document.getElementById('ss-progress-log-styles'))return;
   var style=document.createElement('style');
   style.id='ss-progress-log-styles';
-  style.textContent='.ss-progress-log{display:flex;flex-direction:column;gap:7px;text-align:left}.ss-progress-step{display:flex;align-items:flex-start;gap:8px;font-size:12px;line-height:1.4;color:#71808c}.ss-progress-step::before{content:"...";flex:0 0 22px;color:#db0011;font-weight:700}.ss-progress-step.done{color:#53606b}.ss-progress-step.done::before{content:"✓";color:#27834a}.ss-progress-step.current{color:#17212b;font-weight:600}.ss-progress-log.collapsed .ss-progress-step:not(:last-child){display:none}.ss-progress-log.collapsed{cursor:pointer}.ss-progress-log.collapsed:hover .ss-progress-step:last-child{color:#db0011}';
+  style.textContent='.ss-progress-log{display:flex;flex-direction:column;gap:7px;text-align:left}.ss-progress-step{display:flex;align-items:flex-start;gap:8px;font-size:12px;line-height:1.4;color:#71808c}.ss-progress-step::before{content:"...";flex:0 0 22px;color:#db0011;font-weight:700}.ss-progress-step.done{color:#53606b}.ss-progress-step.done::before{content:"✓";color:#27834a}.ss-progress-step.current{color:#17212b;font-weight:600}.ss-progress-log.collapsed .ss-progress-step:not(:last-child){display:none}.ss-progress-log.collapsed{cursor:pointer}.ss-progress-log.collapsed:hover .ss-progress-step:last-child{color:#db0011}.ss-gas-wake{display:flex;align-items:center;gap:9px;margin:0 0 16px}.ss-gas-wake-button{padding:7px 11px;border:1px solid #cbd5dc;border-radius:4px;background:#fff;color:#53606b;font-size:12px;font-weight:700;cursor:pointer}.ss-gas-wake-button:hover:not(:disabled){border-color:#db0011;color:#db0011}.ss-gas-wake-button:disabled{opacity:.6;cursor:wait}.ss-gas-status{font-size:12px;color:#71808c}.ss-gas-status.ready{color:#27834a}.ss-gas-status.unavailable{color:#c0392b}';
   document.head.appendChild(style);
 }
 
@@ -146,6 +146,29 @@ function hideProgressBar(){
 function setProgressPercent(percent){
   var bar=$('#ss-progress-bar');
   if(bar)bar.style.width=percent+'%';
+}
+
+async function checkGasStatus(button, status){
+  button.disabled=true;
+  status.textContent='Checking Google Apps Script...';
+  var started=Date.now();
+  var controller=new AbortController();
+  var timeoutId=setTimeout(function(){controller.abort();},15000);
+  try{
+    var response=await fetch(GOOGLE_APPS_SCRIPT_URL+'?ping=1&ts='+Date.now(),{signal:controller.signal,cache:'no-store'});
+    var elapsed=Date.now()-started;
+    if(!response.ok)throw new Error('HTTP '+response.status);
+    var payload=await response.json();
+    if(!payload.ok)throw new Error('Invalid health response');
+    status.textContent='Google Apps Script ready ('+(elapsed/1000).toFixed(1)+'s).';
+    status.className='ss-gas-status ready';
+  }catch(error){
+    status.textContent=error.name==='AbortError'?'Google Apps Script timed out.':'Google Apps Script unavailable.';
+    status.className='ss-gas-status unavailable';
+  }finally{
+    clearTimeout(timeoutId);
+    button.disabled=false;
+  }
 }
 
 function cropWhiteSpace(canvas){
@@ -714,6 +737,15 @@ $('#download-btn').addEventListener('click',download);
      tip.innerHTML='<strong>Tip:</strong> Google Apps Script bisa membutuhkan beberapa detik lebih lama saat pertama kali dipakai karena cold start. Ini normal, terutama untuk halaman HSBC atau halaman dengan banyak gambar.';
      tip.style.cssText='margin:0 0 16px;padding:10px 12px;border:1px solid #f0d394;border-radius:6px;background:#fff8e8;color:#8a5a00;font-size:12px;line-height:1.5';
      optionsCard.insertBefore(tip,optionsCard.firstChild);
+   }
+   if(optionsCard&&!optionsCard.querySelector('.ss-gas-wake')){
+     var wakeWrap=document.createElement('div');
+     wakeWrap.className='ss-gas-wake';
+     wakeWrap.innerHTML='<button type="button" class="ss-gas-wake-button">Wake Up GAS</button><span class="ss-gas-status">Not checked</span>';
+     optionsCard.insertBefore(wakeWrap,optionsCard.firstChild.nextSibling);
+     wakeWrap.querySelector('button').addEventListener('click',function(){
+       checkGasStatus(wakeWrap.querySelector('button'),wakeWrap.querySelector('.ss-gas-status'));
+     });
    }
    var saved=getFetcherProviderKey();
   sel.value=saved;
