@@ -36,6 +36,18 @@ function setFetcherProviderKey(key){
   if(sel)sel.value=key;
 }
 
+function updateGasControls(providerKey){
+  var sel=document.getElementById('ss-fetcher');
+  if(!sel)return;
+  var optionsCard=sel.closest('.options-card');
+  if(!optionsCard)return;
+  var visible=providerKey==='google-apps-script';
+  var tip=optionsCard.querySelector('.ss-tip');
+  var wake=optionsCard.querySelector('.ss-gas-wake');
+  if(tip)tip.style.display=visible?'block':'none';
+  if(wake)wake.style.display=visible?'flex':'none';
+}
+
 function loadHtml2Canvas(){
   if(window.html2canvas)return Promise.resolve(window.html2canvas);
   if(html2canvasPromise)return html2canvasPromise;
@@ -755,7 +767,11 @@ $('#download-btn').addEventListener('click',download);
      });
    }
    var saved=getFetcherProviderKey();
-  sel.value=saved;
-  sel.addEventListener('change',function(){ setFetcherProviderKey(sel.value); });
+   sel.value=saved;
+   updateGasControls(saved);
+   sel.addEventListener('change',function(){
+     setFetcherProviderKey(sel.value);
+     updateGasControls(sel.value);
+   });
 })();
 })();
