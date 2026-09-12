@@ -746,7 +746,7 @@ $('#download-btn').addEventListener('click',download);
      var wakeWrap=document.createElement('div');
      wakeWrap.className='ss-gas-wake';
      wakeWrap.style.cssText='display:flex;align-items:center;gap:10px;margin:0 0 16px;padding:10px 12px;border:1px solid #e3e8ec;border-radius:7px;background:#f8fafb';
-     wakeWrap.innerHTML='<button type="button" class="ss-gas-wake-button">Check GAS Status</button><span class="ss-gas-status">Not checked</span>';
+     wakeWrap.innerHTML='<button type="button" class="ss-gas-wake-button">Test Connection</button><span class="ss-gas-status">Not checked</span>';
      wakeWrap.querySelector('button').style.cssText='display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border:1px solid #db0011;border-radius:5px;background:#fff;color:#db0011;font-size:12px;font-weight:700;line-height:1;cursor:pointer';
      wakeWrap.querySelector('.ss-gas-status').style.cssText='display:inline-flex;align-items:center;min-height:25px;padding:0 9px;border-radius:999px;background:#eef1f3;color:#71808c;font-size:11px';
      optionsCard.insertBefore(wakeWrap,optionsCard.firstChild.nextSibling);
