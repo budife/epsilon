@@ -88,12 +88,13 @@ function preparePreviewHtml(html,sourceUrl){
 }
 
 var progressSteps=[];
+var progressStartedAt=0;
 
 function ensureProgressStyles(){
   if(document.getElementById('ss-progress-log-styles'))return;
   var style=document.createElement('style');
   style.id='ss-progress-log-styles';
-  style.textContent='.ss-progress-log{display:flex;flex-direction:column;gap:7px;text-align:left}.ss-progress-step{display:flex;align-items:flex-start;gap:8px;font-size:12px;line-height:1.4;color:#71808c}.ss-progress-step::before{content:"...";flex:0 0 22px;color:#db0011;font-weight:700}.ss-progress-step.done{color:#53606b}.ss-progress-step.done::before{content:"✓";color:#27834a}.ss-progress-step.current{color:#17212b;font-weight:600}.ss-progress-log.collapsed .ss-progress-step:not(:last-child){display:none}.ss-progress-log.collapsed{cursor:pointer}.ss-progress-log.collapsed:hover .ss-progress-step:last-child{color:#db0011}.ss-gas-wake{display:flex;align-items:center;gap:10px;margin:0 0 16px;padding:10px 12px;border:1px solid #e3e8ec;border-radius:7px;background:#f8fafb}.ss-gas-wake-button{display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border:1px solid #db0011;border-radius:5px;background:#fff;color:#db0011;font-size:12px;font-weight:700;line-height:1;cursor:pointer;transition:.15s ease}.ss-gas-wake-button::before{content:"↻";font-size:15px;line-height:1}.ss-gas-wake-button:hover:not(:disabled){background:#db0011;color:#fff}.ss-gas-wake-button:active:not(:disabled){transform:translateY(1px)}.ss-gas-wake-button:disabled{opacity:.6;cursor:wait}.ss-gas-status{display:inline-flex;align-items:center;min-height:25px;padding:0 9px;border-radius:999px;background:#eef1f3;color:#71808c;font-size:11px}.ss-gas-status.ready{background:#eaf7ef;color:#27834a}.ss-gas-status.unavailable{background:#fff0f0;color:#c0392b}';
+   style.textContent+='.ss-progress-total{margin-top:3px;padding-top:8px;border-top:1px solid #e3e8ec;color:#17212b;font-size:12px;font-weight:700}';
   document.head.appendChild(style);
 }
 
@@ -123,24 +124,32 @@ function renderProgressLog(){
   progressSteps.forEach(function(step){
     var row=document.createElement('div');
     row.className='ss-progress-step '+(step.done?'done':'current');
-    row.textContent=step.text+(step.done?' — Done':'');
-    log.appendChild(row);
-  });
+     row.textContent=step.text+(step.done?' — Done · '+(step.duration/1000).toFixed(1)+'s':'');
+     log.appendChild(row);
+   });
+   if(progressStartedAt&&isComplete){
+     var total=document.createElement('div');
+     total.className='ss-progress-total';
+     total.textContent='Total time · '+((Date.now()-progressStartedAt)/1000).toFixed(1)+'s';
+     log.appendChild(total);
+   }
   status.appendChild(log);
 }
 
 function resetProgressLog(){
-  progressSteps=[];
-  renderProgressLog();
+   progressSteps=[];
+   progressStartedAt=Date.now();
+   renderProgressLog();
 }
 
 function updateProgress(text,completed){
   var last=progressSteps[progressSteps.length-1];
   if(last&&!last.done&&last.text===text){
-    last.done=Boolean(completed);
-  }else{
-    if(last&&!last.done)last.done=true;
-    progressSteps.push({text:text,done:Boolean(completed)});
+     last.done=Boolean(completed);
+     if(last.done)last.duration=Date.now()-last.startedAt;
+   }else{
+     if(last&&!last.done){last.done=true;last.duration=Date.now()-last.startedAt;}
+     progressSteps.push({text:text,done:Boolean(completed),startedAt:Date.now(),duration:0});
   }
   renderProgressLog();
 }
