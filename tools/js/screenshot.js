@@ -360,19 +360,19 @@ async function fetchRemoteHtmlFast(url){
   var provider=FETCHER_PROVIDERS[providerKey]||FETCHER_PROVIDERS['google-apps-script'];
   var fetchUrl=provider.buildUrl(targetUrl);
   var isGas=providerKey==='google-apps-script';
-  var maxRetries=isGas?2:0;
+   var maxRetries=isGas?1:0;
   var lastError=null;
 
   for(var attempt=0;attempt<=maxRetries;attempt++){
     if(attempt>0){
       updateProgress('Retrying ('+attempt+'/'+maxRetries+') via '+provider.label+'...');
-      await new Promise(function(r){ setTimeout(r,2000); });
+       await new Promise(function(r){ setTimeout(r,1000); });
     }else{
       updateProgress('Fetching via '+provider.label+'...');
     }
 
     var controller=new AbortController();
-    var timeoutMs=isGas?15000:20000;
+     var timeoutMs=isGas?30000:20000;
     var timeoutId=setTimeout(function(){controller.abort()},timeoutMs);
     try{
       var response=await fetch(fetchUrl,{
@@ -556,7 +556,7 @@ function showFetchErrorOverlay(error){
   var msg=(error&&error.message)||String(error||'Unknown error');
   var isHostError=/Host not allowed/i.test(msg);
   var isTimeout=/Timeout/i.test(msg);
-  var hint=isHostError ? 'Host not allowed. For Screenshot any host is allowed — check GAS deployment.' : isTimeout ? 'GAS cold start? Click Retry (auto-retry 2× with 2s delay is already done).' : 'Try a different URL or switch Fetcher provider.';
+  var hint=isHostError ? 'Host not allowed. For Screenshot any host is allowed — check GAS deployment.' : isTimeout ? 'GAS cold start or slow upstream? Click Retry (one automatic retry is already done).' : 'Try a different URL or switch Fetcher provider.';
   updateProgress('Failed: '+msg);
   var preview=$('#ss-preview');
   if(!preview)return;
