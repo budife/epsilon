@@ -470,11 +470,11 @@ async function capture(){
     }
 
     setProgressPercent(60);
-    await new Promise(function(r){setTimeout(r,500)});
+    await new Promise(function(r){setTimeout(r,100)});
 
     setProgressPercent(70);
     updateProgress('Capturing screenshot...');
-    await new Promise(function(r){setTimeout(r,2000)});
+    await new Promise(function(r){setTimeout(r,200)});
 
     if(!doc)throw new Error('Cannot read document - srcdoc blocked');
 
