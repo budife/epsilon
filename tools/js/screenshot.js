@@ -75,9 +75,46 @@ function preparePreviewHtml(html,sourceUrl){
   return baseTag+html;
 }
 
-function updateProgress(text){
+var progressSteps=[];
+
+function ensureProgressStyles(){
+  if(document.getElementById('ss-progress-log-styles'))return;
+  var style=document.createElement('style');
+  style.id='ss-progress-log-styles';
+  style.textContent='.ss-progress-log{display:flex;flex-direction:column;gap:7px;text-align:left}.ss-progress-step{display:flex;align-items:flex-start;gap:8px;font-size:12px;line-height:1.4;color:#71808c}.ss-progress-step::before{content:"...";flex:0 0 22px;color:#db0011;font-weight:700}.ss-progress-step.done{color:#53606b}.ss-progress-step.done::before{content:"✓";color:#27834a}.ss-progress-step.current{color:#17212b;font-weight:600}';
+  document.head.appendChild(style);
+}
+
+function renderProgressLog(){
   var status=$('#ss-status');
-  if(status)status.textContent=text;
+  if(!status)return;
+  ensureProgressStyles();
+  status.innerHTML='';
+  var log=document.createElement('div');
+  log.className='ss-progress-log';
+  progressSteps.forEach(function(step){
+    var row=document.createElement('div');
+    row.className='ss-progress-step '+(step.done?'done':'current');
+    row.textContent=step.text+(step.done?' — Done':'');
+    log.appendChild(row);
+  });
+  status.appendChild(log);
+}
+
+function resetProgressLog(){
+  progressSteps=[];
+  renderProgressLog();
+}
+
+function updateProgress(text,completed){
+  var last=progressSteps[progressSteps.length-1];
+  if(last&&!last.done&&last.text===text){
+    last.done=Boolean(completed);
+  }else{
+    if(last&&!last.done)last.done=true;
+    progressSteps.push({text:text,done:Boolean(completed)});
+  }
+  renderProgressLog();
 }
 
 function showProgressBar(){
@@ -414,10 +451,11 @@ async function capture(){
   var widthOption=$('#ss-width').value;
   var fullpage=$('#ss-fullpage').value==='true';
   
-  latestPreviewSourceUrl=url;
-  $('#ss-preview').innerHTML='';
-  $('#download-btn').disabled=true;
-  showProgressBar();
+   latestPreviewSourceUrl=url;
+   $('#ss-preview').innerHTML='';
+   $('#download-btn').disabled=true;
+   resetProgressLog();
+   showProgressBar();
   setProgressPercent(10);
   updateProgress('Loading website...');
   
@@ -535,7 +573,7 @@ async function capture(){
         $('#ss-preview').appendChild(img);
         lastImage=imgUrl;
         setProgressPercent(100);
-        updateProgress('Screenshot captured: '+url);
+         updateProgress('Screenshot captured: '+url,true);
         $('#download-btn').disabled=false;
         hideProgressBar();
       };
