@@ -8,7 +8,7 @@
  *
  * Frontend: tools/js/screenshot.js FETCHER_PROVIDERS['google-apps-script']
  *   buildUrl: GOOGLE_APPS_SCRIPT_URL + "?url=" + encodeURIComponent(targetUrl)
- *   fetchRemoteHtmlFast() auto-retry 1x khusus GAS (delay 1s), Abort 30s
+ *   fetchRemoteHtmlFast() auto-retry 2x khusus GAS (delay 2s), Abort 15s
  *
  * Verifikasi: https://script.google.com/macros/s/XXXX/exec?url=https://example.com
  *   harus return HTML valid (<html atau <!doctype)
