@@ -31,3 +31,57 @@ document.querySelectorAll('.creator-link').forEach(function(link){
     window.location.href=link.getAttribute('href')||'the-maker.html';
   });
 });
+
+(function initHomeCategories(){
+  var toolsWrap=document.querySelector('.tools-wrap');
+  var grid=toolsWrap&&toolsWrap.querySelector('.tool-grid');
+  if(!toolsWrap||!grid)return;
+
+  var style=document.createElement('style');
+  style.textContent='.tools-heading{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:12px}.tools-heading h2{margin:0}.tools-heading-note{margin:0;color:#71808c;font-size:12px}.tool-tabs{display:flex;gap:4px;margin-bottom:14px;border-bottom:1px solid #dce3e8}.tool-tab{padding:8px 15px;border:1px solid transparent;border-bottom:2px solid transparent;background:transparent;color:#71808c;font:inherit;font-size:12px;font-weight:700;cursor:pointer}.tool-tab:hover{color:#17212b}.tool-tab.active{border-color:#db0011;border-bottom-color:#db0011;background:#fff5f6;color:#db0011}.tool-panel{display:none}.tool-panel.active{display:block}.tool-empty{min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border:1px dashed #cfd9df;background:rgba(255,255,255,.45);color:#53606b;text-align:center}.tool-empty strong{font-size:14px}.tool-empty span{color:#71808c;font-size:12px}.tool-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.tool-card{min-height:155px;padding:18px}.tool-icon{width:40px;height:40px;margin-bottom:12px;font-size:21px}.tool-card h3{font-size:17px;margin-bottom:6px}.tool-card p{font-size:12px;line-height:1.4}.tool-arrow{padding-top:12px;font-size:12px}.home{height:100vh;min-height:0;display:flex;flex-direction:column;overflow:hidden}.home-header{padding:26px max(7vw,36px) 22px}.home-logo{width:62px;height:62px}.home-header h1{font-size:34px}.home-header p{font-size:14px;margin-top:7px}.tools-wrap{width:100%;flex:1;min-height:0;overflow-y:auto;padding:28px 32px}.home-footer{flex-shrink:0;padding:18px max(7vw,36px)}@media(max-width:980px){.tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.tools-heading{display:block}.tools-heading-note{margin-top:6px}.tool-tabs{overflow-x:auto}.tool-tab{flex:0 0 auto}.tool-grid{grid-template-columns:1fr}.tools-wrap{padding:24px 20px}.home-header{padding:22px 20px 18px}.home-brand{gap:16px}.home-header h1{font-size:28px}.home-logo{width:54px;height:54px}}';
+  document.head.appendChild(style);
+
+  var heading=document.createElement('div');
+  heading.className='tools-heading';
+  heading.innerHTML='<div><p class="eyebrow">EPSILON TOOLKIT</p><h2>Tools</h2></div><p class="tools-heading-note">Choose a category to get started.</p>';
+  var oldHeading=toolsWrap.querySelector(':scope > h2');
+  if(oldHeading)oldHeading.replaceWith(heading);
+
+  var tabs=document.createElement('nav');
+  tabs.className='tool-tabs';
+  tabs.setAttribute('aria-label','Tool categories');
+  var categories=[
+    ['create','Create','No Create tools yet.','Social Canvas and Presentation Board will live here.'],
+    ['prepare','Prepare','No Prepare tools yet.','Image Studio will live here.'],
+    ['check','Check','No Check tools yet.','Color Studio and Design QA will live here.'],
+    ['existing','Existing','','']
+  ];
+  categories.forEach(function(category){
+    var tab=document.createElement('button');
+    tab.className='tool-tab'+(category[0]==='existing'?' active':'');
+    tab.dataset.category=category[0];
+    tab.type='button';
+    tab.textContent=category[1];
+    tabs.appendChild(tab);
+  });
+  toolsWrap.insertBefore(tabs,grid);
+
+  var panels={};
+  categories.forEach(function(category){
+    var panel=document.createElement('div');
+    panel.className='tool-panel'+(category[0]==='existing'?' active':'');
+    panel.dataset.categoryPanel=category[0];
+    if(category[0]==='existing')panel.appendChild(grid);
+    else panel.innerHTML='<div class="tool-empty"><strong>'+category[2]+'</strong><span>'+category[3]+'</span></div>';
+    toolsWrap.appendChild(panel);
+    panels[category[0]]=panel;
+  });
+
+  tabs.querySelectorAll('.tool-tab').forEach(function(tab){
+    tab.addEventListener('click',function(){
+      var category=tab.dataset.category;
+      tabs.querySelectorAll('.tool-tab').forEach(function(item){item.classList.toggle('active',item===tab);});
+      Object.keys(panels).forEach(function(key){panels[key].classList.toggle('active',key===category);});
+    });
+  });
+}());

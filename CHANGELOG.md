@@ -2,6 +2,11 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.0.9 — 12 Sep 2026
+
+- Made The Maker fit the viewport with scrolling limited to the Recent changes list.
+- Added `View more changes` pagination in batches of 10 items.
+
 ## v1.0.8 — 12 Sep 2026
 
 - Applied viewport-first layout behavior to The Maker page and documented the rule for future pages: only inner content areas may scroll when needed.

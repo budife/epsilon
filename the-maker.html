@@ -28,7 +28,8 @@
         </aside>
         <section class="maker-changes" aria-labelledby="changes-title">
           <div class="maker-changes-head"><h2 id="changes-title">Recent changes</h2><p>What has been moving lately</p></div>
-          <ol id="maker-change-list" class="maker-change-list"></ol>
+          <div class="maker-change-scroll"><ol id="maker-change-list" class="maker-change-list"></ol></div>
+          <button id="maker-more-changes" class="maker-more-changes" type="button">View 10 more changes</button>
         </section>
       </div>
     </section>
@@ -45,7 +46,17 @@
       document.getElementById('maker-github').href=data.github;
       document.getElementById('maker-instagram').href=data.instagram;
       document.getElementById('maker-linkedin').href=data.linkedin;
-      document.getElementById('maker-change-list').innerHTML=data.changes.map(function(change){return '<li class="maker-change"><div class="maker-change-meta"><span class="maker-change-version">'+change.version+'</span><span class="maker-change-date">'+change.date+'</span></div><h3>'+change.title+'</h3><p>'+change.description+'</p></li>';}).join('');
+      var changeList=document.getElementById('maker-change-list');
+      var moreButton=document.getElementById('maker-more-changes');
+      var visibleChanges=10;
+      function renderChanges(){
+        changeList.innerHTML=data.changes.slice(0,visibleChanges).map(function(change){return '<li class="maker-change"><div class="maker-change-meta"><span class="maker-change-version">'+change.version+'</span><span class="maker-change-date">'+change.date+'</span></div><h3>'+change.title+'</h3><p>'+change.description+'</p></li>';}).join('');
+        var remaining=data.changes.length-visibleChanges;
+        moreButton.hidden=remaining<=0;
+        if(remaining>0)moreButton.textContent='View '+Math.min(10,remaining)+' more changes';
+      }
+      moreButton.addEventListener('click',function(){visibleChanges+=10;renderChanges();});
+      renderChanges();
     }());
   </script>
 </body>
