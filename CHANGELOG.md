@@ -1,0 +1,35 @@
+# Changelog
+
+All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
+
+## v1.0.6 — 12 Sep 2026
+
+- Added `the-maker.html` and `/the-maker/` with maker profile, social links, GitHub link, and recent changes.
+- Added `maker-data.js` as the shared source for maker profile and recent changes.
+- Added project documentation: `README.md`, `MEMORY.md`, and this changelog.
+- Added a rule in `AGENTS.md` to keep future commits and maker recent changes synchronized.
+
+## v1.0.5 — 12 Sep 2026
+
+- Screenshot progress now shows individual stages, per-stage duration, total time, and expandable completed logs.
+- Added Google Apps Script connection status and a `Test Connection` control for the GAS fetcher.
+
+## v1.0.4 — 19 Aug 2026
+
+- Upgraded Website Screenshot with adjacent Download action, automatic file naming, two-column layout, and HSBC email-blast crop fixes.
+
+## v1.0.3 — 19 Aug 2026
+
+- Added Template Assembler with header, layout, footer, preview, and PNG/JPG download.
+
+## v1.0.2 — 19 Aug 2026
+
+- Renamed EGA to FX Rate Daily Currency Report and unified maker presentation across pages.
+
+## v1.0.1 — 18 Aug 2026
+
+- Added QR Code Generator, Website Screenshot, and Convert Text tools.
+
+## v1.0.0 — 14 Aug 2026
+
+- Initial Epsilon toolkit release with FX rate reporting from Counter Rate workbooks.

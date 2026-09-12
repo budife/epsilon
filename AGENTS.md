@@ -19,6 +19,9 @@ epsilon/
 ├── index.html          # Home — grid 5 tools
 ├── home.css            # Style home
 ├── maker.css / maker.js # Modal "meet the maker" (dipakai semua page)
+├── maker-data.js        # Shared maker profile and recent changes data
+├── the-maker.html       # Maker profile and changelog page
+├── the-maker.css        # Maker page styles
 ├── assets/             # epsilon-logo.png dkk
 ├── libs/               # Vendor offline (jangan hapus)
 │   ├── xlsx.full.min.js       # Daily Currency
@@ -78,7 +81,15 @@ Tidak ada unit test / build. Verifikasi manual:
 2. Buka tiap `tools/*.html` → cek upload/preview/download jalan.
 3. Cek modal maker (klik `budd` di footer) → tab Profile/Updates switch.
 
-## 7. Guideline untuk Agent
+## 7. Changelog And Recent Changes
+
+- Every user-visible change that will be committed must add or update the newest entry in `CHANGELOG.md`.
+- The newest `CHANGELOG.md` entry must match the first item in `maker-data.js` under `changes`.
+- Keep the version, date, title, and description synchronized between both files.
+- Do not wait for a separate request to update recent changes; include it in the same change set and commit.
+- `MEMORY.md` stores durable project context and should only change when project conventions or stable preferences change.
+
+## 8. Guideline untuk Agent
 
 - **Baca dulu file yang akan diubah** (`Read` sebelum `Edit`).
 - **Edit minimal:** prefer `Edit` file existing daripada `Write` baru. Jangan bikin `*.md` baru kecuali diminta.
@@ -87,7 +98,7 @@ Tidak ada unit test / build. Verifikasi manual:
 - **Screenshot Worker:** jika ubah flow `tools/screenshot.html` / `js/*`, pastikan `sandbox="allow-same-origin"` dan lifecycle `srcdoc` tetap benar (lihat git log `127ff7f`, `615d2a2`).
 - **Verifikasi via browser** setelah perubahan (bukan cuma `git diff`).
 
-## 8. Yang Tidak Boleh Dilakukan
+## 9. Yang Tidak Boleh Dilakukan
 
 - Menambah build step / `node_modules` di repo root.
 - Menghapus/mengganti lib offline dengan CDN-only.
@@ -95,10 +106,10 @@ Tidak ada unit test / build. Verifikasi manual:
 - Commit secret / API key Worker ke repo.
 - Membuat file dokumentasi baru yang duplikat (`AGENT.md` vs `AGENTS.md` — pakai `AGENTS.md` ini saja).
 
-## 9. Git
+## 10. Git
 
 - Branch utama `main`. Commit message singkat, pakai prefix `Tool:` mis. `Screenshot: fix image proxy`.
 - Selalu `git status` + `git diff` sebelum commit. Jangan `force-push`.
 
 ---
-*Last updated: 2026-08-31 — sinkron dengan 5 tools di `index.html`.*
+*Last updated: 2026-09-12 — tambah aturan changelog dan halaman The Maker.*
