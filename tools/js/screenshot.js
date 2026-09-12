@@ -81,7 +81,7 @@ function ensureProgressStyles(){
   if(document.getElementById('ss-progress-log-styles'))return;
   var style=document.createElement('style');
   style.id='ss-progress-log-styles';
-  style.textContent='.ss-progress-log{display:flex;flex-direction:column;gap:7px;text-align:left}.ss-progress-step{display:flex;align-items:flex-start;gap:8px;font-size:12px;line-height:1.4;color:#71808c}.ss-progress-step::before{content:"...";flex:0 0 22px;color:#db0011;font-weight:700}.ss-progress-step.done{color:#53606b}.ss-progress-step.done::before{content:"✓";color:#27834a}.ss-progress-step.current{color:#17212b;font-weight:600}.ss-progress-log.collapsed .ss-progress-step:not(:last-child){display:none}';
+  style.textContent='.ss-progress-log{display:flex;flex-direction:column;gap:7px;text-align:left}.ss-progress-step{display:flex;align-items:flex-start;gap:8px;font-size:12px;line-height:1.4;color:#71808c}.ss-progress-step::before{content:"...";flex:0 0 22px;color:#db0011;font-weight:700}.ss-progress-step.done{color:#53606b}.ss-progress-step.done::before{content:"✓";color:#27834a}.ss-progress-step.current{color:#17212b;font-weight:600}.ss-progress-log.collapsed .ss-progress-step:not(:last-child){display:none}.ss-progress-log.collapsed{cursor:pointer}.ss-progress-log.collapsed:hover .ss-progress-step:last-child{color:#db0011}';
   document.head.appendChild(style);
 }
 
@@ -91,7 +91,23 @@ function renderProgressLog(){
   ensureProgressStyles();
   status.innerHTML='';
   var log=document.createElement('div');
-  log.className='ss-progress-log'+(progressSteps.length&&progressSteps.every(function(step){return step.done;})?' collapsed':'');
+  var isComplete=progressSteps.length&&progressSteps.every(function(step){return step.done;});
+  log.className='ss-progress-log'+(isComplete?' collapsed':'');
+  if(isComplete){
+    log.setAttribute('role','button');
+    log.setAttribute('tabindex','0');
+    log.setAttribute('aria-expanded','false');
+    log.title='Click to expand progress details';
+    var toggleDetails=function(){
+      var collapsed=log.classList.toggle('collapsed');
+      log.setAttribute('aria-expanded',String(!collapsed));
+      log.title=collapsed?'Click to expand progress details':'Click to collapse progress details';
+    };
+    log.addEventListener('click',toggleDetails);
+    log.addEventListener('keydown',function(event){
+      if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleDetails();}
+    });
+  }
   progressSteps.forEach(function(step){
     var row=document.createElement('div');
     row.className='ss-progress-step '+(step.done?'done':'current');
