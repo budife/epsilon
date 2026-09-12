@@ -36,31 +36,34 @@ function doGet(e) {
   //     .setMimeType(ContentService.MimeType.JSON);
   // }
 
-  try {
-    var resp = UrlFetchApp.fetch(target, {
-      headers: {
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-      },
-      muteHttpExceptions: true,
-      followRedirects: true,
-      validateHttpsCertificates: true
-    });
+  var lastError = "Unknown fetch error";
+  for (var attempt = 0; attempt < 2; attempt++) {
+    try {
+      var resp = UrlFetchApp.fetch(target, {
+        headers: {
+          "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        },
+        muteHttpExceptions: true,
+        followRedirects: true,
+        validateHttpsCertificates: true
+      });
 
-    var code = resp.getResponseCode();
-    if (code < 200 || code >= 300) {
-      return ContentService.createTextOutput("Upstream HTTP " + code + " for " + target)
-        .setMimeType(ContentService.MimeType.TEXT);
+      var code = resp.getResponseCode();
+      if (code >= 200 && code < 300) {
+        var html = resp.getContentText();
+        // GAS automatically allows CORS when deployed as an open Web App.
+        return ContentService.createTextOutput(html).setMimeType(ContentService.MimeType.HTML);
+      }
+      lastError = "Upstream HTTP " + code + " for " + target;
+    } catch (err) {
+      lastError = err.message || String(err);
     }
-
-    var html = resp.getContentText();
-    // GAS otomatis allow CORS untuk fetch client; deploy sebagai Web App "Anyone" + "Execute as me"
-    return ContentService.createTextOutput(html).setMimeType(ContentService.MimeType.HTML);
-
-  } catch (err) {
-    return ContentService.createTextOutput(JSON.stringify({error: err.message || String(err)}))
-      .setMimeType(ContentService.MimeType.JSON);
+    if (attempt === 0) Utilities.sleep(1000);
   }
+
+  return ContentService.createTextOutput(JSON.stringify({error: lastError}))
+    .setMimeType(ContentService.MimeType.JSON);
 }
 
 // Opsional: handle preflight jika ada yang pakai POST
