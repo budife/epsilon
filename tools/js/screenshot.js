@@ -81,7 +81,7 @@ function ensureProgressStyles(){
   if(document.getElementById('ss-progress-log-styles'))return;
   var style=document.createElement('style');
   style.id='ss-progress-log-styles';
-  style.textContent='.ss-progress-log{display:flex;flex-direction:column;gap:7px;text-align:left}.ss-progress-step{display:flex;align-items:flex-start;gap:8px;font-size:12px;line-height:1.4;color:#71808c}.ss-progress-step::before{content:"...";flex:0 0 22px;color:#db0011;font-weight:700}.ss-progress-step.done{color:#53606b}.ss-progress-step.done::before{content:"✓";color:#27834a}.ss-progress-step.current{color:#17212b;font-weight:600}';
+  style.textContent='.ss-progress-log{display:flex;flex-direction:column;gap:7px;text-align:left}.ss-progress-step{display:flex;align-items:flex-start;gap:8px;font-size:12px;line-height:1.4;color:#71808c}.ss-progress-step::before{content:"...";flex:0 0 22px;color:#db0011;font-weight:700}.ss-progress-step.done{color:#53606b}.ss-progress-step.done::before{content:"✓";color:#27834a}.ss-progress-step.current{color:#17212b;font-weight:600}.ss-progress-log.collapsed .ss-progress-step:not(:last-child){display:none}';
   document.head.appendChild(style);
 }
 
@@ -91,7 +91,7 @@ function renderProgressLog(){
   ensureProgressStyles();
   status.innerHTML='';
   var log=document.createElement('div');
-  log.className='ss-progress-log';
+  log.className='ss-progress-log'+(progressSteps.length&&progressSteps.every(function(step){return step.done;})?' collapsed':'');
   progressSteps.forEach(function(step){
     var row=document.createElement('div');
     row.className='ss-progress-step '+(step.done?'done':'current');
