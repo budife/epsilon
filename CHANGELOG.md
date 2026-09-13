@@ -2,6 +2,11 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.7.4 — 13 Sep 2026
+
+- Made palette image copying generic by writing the visible palette screenshot as `image/png` to the clipboard.
+- Kept PNG download as a fallback when browser clipboard access is unavailable.
+
 ## v1.7.3 — 13 Sep 2026
 
 - Changed `Copy as image` to capture the visible `Your palette` element directly as a PNG screenshot for Photoshop pasting.
