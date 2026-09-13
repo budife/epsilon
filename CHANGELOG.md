@@ -2,9 +2,9 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
-## v1.9.10 — 13 Sep 2026
+## v1.9.11 — 13 Sep 2026
 
-- Moved editable image labels directly below each image in Presentation Board.
+- Hid editable rename inputs during Presentation Board PNG/PDF export and enabled wrapping for long captions.
 
 ## v1.9.8 — 13 Sep 2026
 

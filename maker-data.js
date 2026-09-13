@@ -11,6 +11,7 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v1.9.11',date:'13 Sep 2026',title:'Clean editable board captions',description:'Input rename pada Presentation Board tidak lagi ikut masuk ke hasil PNG/PDF dan caption panjang sekarang wrap otomatis.'},
       {version:'v1.9.10',date:'13 Sep 2026',title:'Rename directly on board',description:'Rename label gambar sekarang dilakukan langsung di bawah setiap gambar pada Presentation Board, bukan lewat daftar terpisah.'},
       {version:'v1.9.8',date:'13 Sep 2026',title:'Complete Social Size Guide planning',description:'Menambahkan safe area per preset, usage filter, notes, favorites, copy ratio/CSS/JSON, export CSV/PNG/PDF, dan metadata review/source.'},
       {version:'v1.9.7',date:'13 Sep 2026',title:'Transparent size templates',description:'Template PNG dari Social Size Guide sekarang transparan agar bisa langsung dipakai sebagai overlay di Photoshop dan aplikasi desain.'},
