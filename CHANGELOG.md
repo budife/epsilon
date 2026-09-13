@@ -2,6 +2,10 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.8.4 — 13 Sep 2026
+
+- Fixed Color Picker panel overflow so `Shades & tints` stays visible or scrolls inside the panel instead of being clipped.
+
 ## v1.8.3 — 13 Sep 2026
 
 - Improved palette clustering so small but distinct colors, such as red text, remain represented.
