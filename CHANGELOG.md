@@ -2,6 +2,11 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.7.1 — 13 Sep 2026
+
+- Added Image Palette extraction to Color Studio.
+- Added local dominant color analysis with HEX/RGB/HSL values and add-all-to-palette support.
+
 ## v1.7.0 — 13 Sep 2026
 
 - Added Screenshot Reference Board MVP under the Check category.
