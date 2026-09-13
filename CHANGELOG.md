@@ -2,6 +2,10 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.9.7 — 13 Sep 2026
+
+- Made downloaded Social Size Guide templates transparent PNG overlays while keeping guide lines, labels, and Story danger zones visible.
+
 ## v1.9.6 — 13 Sep 2026
 
 - Replaced `Use in Image Studio` with `Download template` on Social Size Guide cards.
