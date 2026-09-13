@@ -2,6 +2,11 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.7.8 — 13 Sep 2026
+
+- Removed the 10-color limit from Image Palette extraction.
+- Added finer color grouping and an internal scroll area so all detected color groups can be reviewed with percentages.
+
 ## v1.7.7 — 13 Sep 2026
 
 - Improved Image Palette precision by sampling more pixels and using average colors from the original pixels in each color group.

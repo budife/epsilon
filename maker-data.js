@@ -11,6 +11,7 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v1.7.8',date:'13 Sep 2026',title:'Complete image palette colors',description:'Image Palette sekarang menampilkan semua kelompok warna yang ditemukan tanpa batas 10 warna, dengan sample lebih detail dan persentase kemunculan.'},
       {version:'v1.7.7',date:'13 Sep 2026',title:'More precise image palette sampling',description:'Image Palette sekarang mengambil sample pixel lebih banyak, memakai warna rata-rata dari pixel asli, dan menampilkan persentase kemunculan warna.'},
       {version:'v1.7.6',date:'13 Sep 2026',title:'Compact extracted palette',description:'Kartu warna pada Image Palette dibuat lebih compact agar hingga 10 warna dominan dapat terlihat dalam satu tampilan.'},
       {version:'v1.7.5',date:'13 Sep 2026',title:'More visible extracted colors',description:'Image Palette sekarang menampilkan hingga 10 warna dominan dan swatch warna diperbaiki agar selalu terlihat.'},
