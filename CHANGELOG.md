@@ -2,6 +2,10 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.9.2 — 13 Sep 2026
+
+- Made the width and height values on each Social Size Guide card separately clickable for copying.
+
 ## v1.9.1 — 13 Sep 2026
 
 - Made the pixel dimensions on every Social Size Guide card directly clickable for copying.

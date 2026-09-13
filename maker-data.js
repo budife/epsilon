@@ -11,6 +11,7 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v1.9.2',date:'13 Sep 2026',title:'Copy width and height separately',description:'Angka width dan height pada size card Social Size Guide sekarang memiliki tombol copy terpisah, dengan tanda × sebagai pemisah.'},
       {version:'v1.9.1',date:'13 Sep 2026',title:'Copy pixel size directly',description:'Angka ukuran pixel pada setiap size card di Social Size Guide sekarang bisa diklik langsung untuk menyalin ukuran.'},
       {version:'v1.9.0',date:'13 Sep 2026',title:'Social Size Guide',description:'Social Canvas diubah menjadi panduan ukuran dengan filter platform, search, copy size, Use in Image Studio, custom calculator, dan preset WA Blast dengan max height.'},
       {version:'v1.8.7',date:'13 Sep 2026',title:'Rework home category navigation',description:'Tool tabs di home diubah menjadi navigation cards dengan nomor dan nama kategori yang lebih menonjol, tetap compact dan responsive.'},
