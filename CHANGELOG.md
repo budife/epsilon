@@ -2,6 +2,10 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.8.1 — 13 Sep 2026
+
+- Widened Image Palette color grouping again so visually similar colors merge into a more compact result.
+
 ## v1.8.0 — 13 Sep 2026
 
 - Merged nearby colors in Image Palette extraction using wider RGB grouping while keeping average original pixel colors as representatives.
