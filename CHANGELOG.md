@@ -2,6 +2,10 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.9.9 — 13 Sep 2026
+
+- Added editable image labels to Presentation Board; labels are used as board captions after upload.
+
 ## v1.9.8 — 13 Sep 2026
 
 - Completed Social Size Guide planning with safe areas, usage filters, notes, favorites, copy formats, and guide exports.

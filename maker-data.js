@@ -11,6 +11,7 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v1.9.9',date:'13 Sep 2026',title:'Editable Presentation Board labels',description:'Nama file gambar di Presentation Board sekarang bisa diganti langsung setelah upload dan digunakan sebagai caption board.'},
       {version:'v1.9.8',date:'13 Sep 2026',title:'Complete Social Size Guide planning',description:'Menambahkan safe area per preset, usage filter, notes, favorites, copy ratio/CSS/JSON, export CSV/PNG/PDF, dan metadata review/source.'},
       {version:'v1.9.7',date:'13 Sep 2026',title:'Transparent size templates',description:'Template PNG dari Social Size Guide sekarang transparan agar bisa langsung dipakai sebagai overlay di Photoshop dan aplikasi desain.'},
       {version:'v1.9.6',date:'13 Sep 2026',title:'Social Size Guide templates',description:'Setiap size card sekarang bisa download template PNG dengan safe margin kiri/kanan/atas/bawah; format story juga menampilkan danger zone.'},
