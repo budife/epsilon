@@ -11,6 +11,7 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v1.7.2',date:'13 Sep 2026',title:'Palette image copy compatibility',description:'Copy as image sekarang menyiapkan format PNG, HTML image, dan plain text agar lebih mudah ditempel ke Photoshop dan aplikasi desain lain.'},
       {version:'v1.7.1',date:'13 Sep 2026',title:'Color Studio image palette',description:'Color Studio sekarang bisa upload gambar, membaca warna dominan secara lokal, menampilkan HEX/RGB/HSL, dan menambahkan hasil ke palette.'},
       {version:'v1.7.0',date:'13 Sep 2026',title:'Screenshot Reference Board MVP',description:'Menambahkan board lokal untuk mengumpulkan screenshot, menyimpan source URL dan note, mengatur grid, serta export PNG/PDF.'},
       {version:'v1.6.0',date:'13 Sep 2026',title:'Typography Helper MVP',description:'Menambahkan type scale, live preview heading/body/caption, line-height, letter-spacing, converter PX/PT/MM, dan copy CSS.'},
