@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Screenshot Reference Board — Epsilon</title>
+  <link rel="icon" type="image/png" href="../assets/epsilon-logo.png">
+  <link rel="stylesheet" href="screenshot-reference-board.css">
+  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="../maker.css">
+</head>
+<body>
+  <main class="ref-app">
+    <header class="ref-header"><a class="ref-brand" href="../index.html"><span class="ref-brand-mark">E</span><span>Epsilon · Screenshot Reference Board</span></a><div class="ref-header-note">Collect visual references</div></header>
+    <div class="ref-layout">
+      <section class="ref-main">
+        <div class="ref-title"><div><p class="eyebrow">CHECK REFERENCES</p><h1>Reference Board</h1></div><p>Import screenshots from Website Screenshot, add context, and build a clean reference board.</p></div>
+        <div class="ref-columns">
+          <div class="ref-controls"><label class="ref-drop" for="ref-input"><span class="upload-symbol">↑</span><strong>Drop screenshots here</strong><small>PNG, JPG, or WebP · multiple files supported</small><span class="choose-button">Choose Images</span></label><input id="ref-input" type="file" accept="image/png,image/jpeg,image/webp" multiple hidden><div id="ref-summary" class="ref-summary">No screenshots selected</div><div class="ref-options"><div class="field"><label for="ref-title">Board title</label><input id="ref-title" placeholder="Reference board"></div><div class="field"><label for="ref-subtitle">Subtitle</label><input id="ref-subtitle" placeholder="Optional project or campaign"></div><div class="field"><label for="ref-columns">Columns</label><select id="ref-columns"><option value="1">1 column</option><option value="2" selected>2 columns</option><option value="3">3 columns</option></select></div><div class="field"><label for="ref-background">Background</label><input id="ref-background" class="color-input" type="color" value="#17212b"></div><label class="check-field"><input id="show-details" type="checkbox" checked> Show source details</label></div><div id="ref-details" class="ref-details"><p class="eyebrow">SELECTED REFERENCE</p><div class="field"><label for="ref-url">Source URL</label><input id="ref-url" placeholder="https://example.com"></div><div class="field"><label for="ref-note">Note</label><textarea id="ref-note" rows="3" placeholder="What do you like about this reference?"></textarea></div><button id="save-details" class="small-button">Save details</button></div><div class="ref-actions"><button id="export-png" class="primary-button" disabled>Export PNG</button><button id="export-pdf" class="secondary-button" disabled>Export PDF</button><button id="clear" class="secondary-button">Clear</button></div></div>
+          <section class="ref-preview"><div class="preview-head"><div><p class="eyebrow">PREVIEW</p><h2 id="ref-count">0 references</h2></div><span>Local board</span></div><div id="ref-stage" class="ref-stage"><div class="ref-empty">Import screenshots to build your board.</div></div></section>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="../libs/html-to-image.min.js"></script><script src="../libs/pdf-lib.min.js"></script><script src="screenshot-reference-board.js"></script><script src="../maker.js"></script>
+</body>
+</html>

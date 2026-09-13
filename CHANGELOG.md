@@ -2,6 +2,11 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.7.0 — 13 Sep 2026
+
+- Added Screenshot Reference Board MVP under the Check category.
+- Added multi-image reference collection, source URL and note metadata, grid controls, and local PNG/PDF export.
+
 ## v1.6.0 — 13 Sep 2026
 
 - Added Typography Helper MVP under the Prepare category.

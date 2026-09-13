@@ -21,6 +21,7 @@ Open `index.html` directly in Chrome or Edge, or use VS Code Live Server on port
 | Social Canvas | `tools/social-canvas.html` | Place an image on social presets, add text, and export PNG/JPG locally. |
 | Presentation Board | `tools/presentation-board.html` | Arrange multiple images into a review board and export PNG/PDF locally. |
 | Typography Helper | `tools/typography-helper.html` | Build a type scale, preview hierarchy, convert units, and copy CSS locally. |
+| Screenshot Reference Board | `tools/screenshot-reference-board.html` | Collect screenshots, add source notes, and export a visual reference board. |
 
 ## Project Notes
 
