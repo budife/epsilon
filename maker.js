@@ -73,7 +73,7 @@ document.querySelectorAll('.creator-link').forEach(function(link){
     panel.dataset.categoryPanel=category[0];
     if(category[0]==='existing')panel.appendChild(grid);
     else if(category[0]==='prepare')panel.innerHTML='<div class="tool-grid"><a class="tool-card" href="tools/image-studio.html"><div class="tool-icon">▧</div><h3>Image Studio</h3><p>Resize, convert, compress, and rename images locally in your browser.</p><span class="tool-arrow">Open tool →</span></a></div>';
-    else if(category[0]==='check')panel.innerHTML='<div class="tool-grid"><a class="tool-card" href="tools/color-studio.html"><div class="tool-icon">◉</div><h3>Color Studio</h3><p>Explore color values, build palettes, and generate shades and tints.</p><span class="tool-arrow">Open tool →</span></a></div>';
+    else if(category[0]==='check')panel.innerHTML='<div class="tool-grid"><a class="tool-card" href="tools/color-studio.html"><div class="tool-icon">◉</div><h3>Color Studio</h3><p>Explore color values, build palettes, and generate shades and tints.</p><span class="tool-arrow">Open tool →</span></a><a class="tool-card" href="tools/design-qa.html"><div class="tool-icon">✓</div><h3>Design QA</h3><p>Check dimensions, ratios, formats, file sizes, and filenames before delivery.</p><span class="tool-arrow">Open tool →</span></a></div>';
     else panel.innerHTML='<div class="tool-empty"><strong>'+category[2]+'</strong><span>'+category[3]+'</span></div>';
     toolsWrap.appendChild(panel);
     panels[category[0]]=panel;

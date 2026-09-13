@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design QA — Epsilon</title>
+  <link rel="icon" type="image/png" href="../assets/epsilon-logo.png">
+  <link rel="stylesheet" href="design-qa.css">
+  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="../maker.css">
+</head>
+<body>
+  <main class="qa-app">
+    <header class="qa-header"><a class="qa-brand" href="../index.html"><span class="qa-brand-mark">E</span><span>Epsilon · Design QA</span></a><div class="qa-header-note">Local pre-delivery checks</div></header>
+    <div class="qa-layout">
+      <section class="qa-main">
+        <div class="qa-title"><div><p class="eyebrow">CHECK ASSETS</p><h1>Design QA</h1></div><p>Check your assets before delivery. Nothing leaves your browser.</p></div>
+        <div class="qa-columns">
+          <div class="qa-controls">
+            <label class="qa-drop" for="qa-input"><span class="upload-symbol">↑</span><strong>Drop assets here</strong><small>PNG, JPG, or WebP · multiple files supported</small><span class="choose-button">Choose Files</span></label>
+            <input id="qa-input" type="file" accept="image/png,image/jpeg,image/webp" multiple hidden>
+            <div id="qa-summary" class="qa-summary">No assets selected</div>
+            <div class="qa-options"><div class="field"><label for="qa-preset">Target preset</label><select id="qa-preset"><option value="instagram-square">Instagram Square · 1080 × 1080</option><option value="instagram-portrait">Instagram Portrait · 1080 × 1350</option><option value="story">Story / Reels · 1080 × 1920</option><option value="linkedin">LinkedIn · 1200 × 627</option><option value="presentation">Presentation · 1920 × 1080</option><option value="a4">A4 · 2480 × 3508</option><option value="custom">Custom</option></select></div><div id="qa-custom" class="custom-fields" hidden><div class="field"><label for="qa-width">Width</label><input id="qa-width" type="number" min="1" value="1080"></div><div class="field"><label for="qa-height">Height</label><input id="qa-height" type="number" min="1" value="1080"></div></div><div class="field"><label for="qa-max-size">Max file size <output id="qa-size-value">8 MB</output></label><input id="qa-max-size" type="range" min="1" max="25" value="8"></div></div>
+            <div class="qa-actions"><button id="qa-check" class="primary-button" disabled>Run QA Check</button><button id="qa-clear" class="secondary-button">Clear</button></div>
+          </div>
+          <section class="qa-results"><div class="qa-results-head"><div><p class="eyebrow">REPORT</p><h2>Results</h2></div><button id="qa-export" class="export-button" disabled>Export CSV</button></div><div id="qa-list" class="qa-list"><div class="empty-state">Your QA results will appear here.</div></div></section>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="design-qa.js"></script>
+  <script src="../maker.js"></script>
+</body>
+</html>

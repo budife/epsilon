@@ -2,6 +2,11 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.3.0 — 13 Sep 2026
+
+- Added Design QA MVP under the Check category.
+- Added batch checks for dimensions, aspect ratio, format, file size, filename, PASS/WARNING/FAIL status, and CSV export.
+
 ## v1.2.0 — 13 Sep 2026
 
 - Added Color Studio MVP under the Check category.
