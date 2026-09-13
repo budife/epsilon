@@ -11,6 +11,7 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v1.7.5',date:'13 Sep 2026',title:'More visible extracted colors',description:'Image Palette sekarang menampilkan hingga 10 warna dominan dan swatch warna diperbaiki agar selalu terlihat.'},
       {version:'v1.7.4',date:'13 Sep 2026',title:'Generic palette image clipboard',description:'Copy as image sekarang menyalin screenshot palette sebagai image/png ke clipboard secara umum, dengan fallback download jika akses clipboard ditolak browser.'},
       {version:'v1.7.3',date:'13 Sep 2026',title:'Palette screenshot copy',description:'Copy as image sekarang mengambil screenshot langsung dari tampilan Your palette agar hasilnya bisa ditempel sebagai image ke Photoshop.'},
       {version:'v1.7.2',date:'13 Sep 2026',title:'Palette image copy compatibility',description:'Copy as image sekarang menyiapkan format PNG, HTML image, dan plain text agar lebih mudah ditempel ke Photoshop dan aplikasi desain lain.'},

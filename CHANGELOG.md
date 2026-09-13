@@ -2,6 +2,11 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.7.5 — 13 Sep 2026
+
+- Increased Image Palette extraction from 6 to up to 10 dominant colors.
+- Fixed extracted color swatches so their color blocks are visible.
+
 ## v1.7.4 — 13 Sep 2026
 
 - Made palette image copying generic by writing the visible palette screenshot as `image/png` to the clipboard.
