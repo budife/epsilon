@@ -15,7 +15,7 @@ Open `index.html` directly in Chrome or Edge, or use VS Code Live Server on port
 | Convert Text | `tools/converttext.html` | Convert text case and clean repeated spaces with separate input and output panes. |
 | Website Screenshot | `tools/screenshot.html` | Fetch and capture remote HTML as PNG, JPG, or PDF with progress reporting. |
 | Template Assembler | `tools/assembler.html` | Combine a layout image with selectable header and footer templates. |
-| Image Studio | `tools/image-studio.html` | Resize, convert, and rename multiple images locally in the browser. |
+| PDF Tools | `tools/pdf-tools.html` | Merge and optimize multiple PDFs locally without rasterizing pages. |
 | Color Studio | `tools/color-studio.html` | Explore HEX/RGB/HSL values, extract palettes from images, and generate shades and tints. |
 | Design QA | `tools/design-qa.html` | Check asset dimensions, aspect ratios, formats, sizes, and filenames before delivery. |
 | Social Size Guide | `tools/social-canvas.html` | Find social, messaging, email, print, and presentation sizes, then use them in Image Studio. |

@@ -2,6 +2,11 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v2.0.0 — 13 Sep 2026
+
+- Replaced Image Studio in the Prepare navigation with PDF Tools.
+- Added local PDF merge, file queue removal, output rename, and structure optimization without rasterizing pages.
+
 ## v1.9.13 — 13 Sep 2026
 
 - Added an inline × button to remove individual images from Presentation Board before export.
