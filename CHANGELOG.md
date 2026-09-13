@@ -2,6 +2,11 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.5.0 — 13 Sep 2026
+
+- Added Presentation Board MVP under the Create category.
+- Added multi-image grid layouts, title, subtitle, captions, background, spacing controls, and local PNG/PDF export.
+
 ## v1.4.0 — 13 Sep 2026
 
 - Added Social Canvas MVP under the Create category.

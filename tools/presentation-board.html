@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Presentation Board — Epsilon</title>
+  <link rel="icon" type="image/png" href="../assets/epsilon-logo.png">
+  <link rel="stylesheet" href="presentation-board.css">
+  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="../maker.css">
+</head>
+<body>
+  <main class="board-app">
+    <header class="board-header"><a class="board-brand" href="../index.html"><span class="board-brand-mark">E</span><span>Epsilon · Presentation Board</span></a><div class="board-header-note">Moodboards, portfolios, approvals</div></header>
+    <div class="board-layout">
+      <section class="board-main">
+        <div class="board-title"><div><p class="eyebrow">CREATE BOARD</p><h1>Presentation Board</h1></div><p>Arrange your visuals into a clean board for review, presentation, or delivery.</p></div>
+        <div class="board-columns">
+          <div class="board-controls">
+            <label class="board-drop" for="board-input"><span class="upload-symbol">↑</span><strong>Drop images here</strong><small>PNG, JPG, or WebP · multiple files supported</small><span class="choose-button">Choose Images</span></label>
+            <input id="board-input" type="file" accept="image/png,image/jpeg,image/webp" multiple hidden>
+            <div id="board-summary" class="board-summary">No images selected</div>
+            <div class="board-options"><div class="field"><label for="board-title">Board title</label><input id="board-title" placeholder="Project title"></div><div class="field"><label for="board-subtitle">Subtitle</label><input id="board-subtitle" placeholder="Optional description"></div><div class="field"><label for="board-columns">Columns</label><select id="board-columns"><option value="2">2 columns</option><option value="3" selected>3 columns</option><option value="4">4 columns</option></select></div><div class="field"><label for="board-gap">Gap <output id="gap-value">20 px</output></label><input id="board-gap" type="range" min="4" max="60" value="20"></div><div class="field"><label for="board-background">Background</label><input id="board-background" class="color-input" type="color" value="#ffffff"></div><label class="check-field"><input id="show-captions" type="checkbox" checked> Show file captions</label></div>
+            <div class="board-actions"><button id="export-png" class="primary-button" disabled>Export PNG</button><button id="export-pdf" class="secondary-button" disabled>Export PDF</button></div>
+          </div>
+          <section class="board-preview"><div class="preview-head"><div><p class="eyebrow">PREVIEW</p><h2>Board</h2></div><span id="board-size">0 images</span></div><div id="board-stage" class="board-stage"><div class="board-empty">Upload images to build your board.</div></div></section>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="../libs/html-to-image.min.js"></script>
+  <script src="../libs/pdf-lib.min.js"></script>
+  <script src="presentation-board.js"></script>
+  <script src="../maker.js"></script>
+</body>
+</html>

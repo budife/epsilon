@@ -19,6 +19,7 @@ Open `index.html` directly in Chrome or Edge, or use VS Code Live Server on port
 | Color Studio | `tools/color-studio.html` | Explore HEX/RGB/HSL values, build palettes, and generate shades and tints. |
 | Design QA | `tools/design-qa.html` | Check asset dimensions, aspect ratios, formats, sizes, and filenames before delivery. |
 | Social Canvas | `tools/social-canvas.html` | Place an image on social presets, add text, and export PNG/JPG locally. |
+| Presentation Board | `tools/presentation-board.html` | Arrange multiple images into a review board and export PNG/PDF locally. |
 
 ## Project Notes
 
