@@ -2,3 +2,4 @@
 :root{--board-file-bg:#fff}
 .board-caption-input{width:100%;margin:7px 0 0;border:1px solid #cbd5dc;background:#fff;color:var(--ink);padding:6px 7px;font:inherit;font-size:11px}.board-caption-input:focus{border-color:var(--red);outline:0;box-shadow:0 0 0 2px #ffe8ea}
 :root{--board-file-bg:#fff}.board-caption-input{width:100%;margin:7px 0 0;border:0;background:transparent;color:#71808c;padding:0;font:inherit;font-size:10px;line-height:1.4;white-space:normal;overflow-wrap:anywhere}.board-caption-input:focus{outline:1px solid #db0011;outline-offset:2px}
+:root{--board-file-bg:#fff}.board-caption-output{display:none;margin:7px 0 0;color:#71808c;font-size:10px;line-height:1.4;white-space:normal;overflow-wrap:anywhere}
