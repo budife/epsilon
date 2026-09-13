@@ -2,6 +2,11 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.6.0 — 13 Sep 2026
+
+- Added Typography Helper MVP under the Prepare category.
+- Added type scale, live hierarchy preview, line-height, letter-spacing, PX/PT/MM converter, and CSS copy.
+
 ## v1.5.0 — 13 Sep 2026
 
 - Added Presentation Board MVP under the Create category.

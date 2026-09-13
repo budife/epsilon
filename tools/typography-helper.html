@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Typography Helper — Epsilon</title>
+  <link rel="icon" type="image/png" href="../assets/epsilon-logo.png">
+  <link rel="stylesheet" href="typography-helper.css">
+  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="../maker.css">
+</head>
+<body>
+  <main class="type-app">
+    <header class="type-header"><a class="type-brand" href="../index.html"><span class="type-brand-mark">E</span><span>Epsilon · Typography Helper</span></a><div class="type-header-note">Build a practical type system</div></header>
+    <div class="type-layout">
+      <section class="type-main">
+        <div class="type-title"><div><p class="eyebrow">PREPARE TYPE</p><h1>Typography Helper</h1></div><p>Preview a simple type system and copy the CSS when the rhythm feels right.</p></div>
+        <div class="type-columns">
+          <div class="type-controls"><div class="type-options"><div class="field"><label for="font-stack">Font stack</label><select id="font-stack"><option value="Arial, sans-serif">Arial</option><option value="Georgia, serif">Georgia</option><option value="Verdana, sans-serif">Verdana</option><option value="Univers, Arial, sans-serif">Univers fallback</option></select></div><div class="field"><label for="base-size">Base size <output id="base-size-value">16 px</output></label><input id="base-size" type="range" min="10" max="24" value="16"></div><div class="field"><label for="scale">Scale ratio <output id="scale-value">1.25</output></label><input id="scale" type="range" min="1.1" max="1.5" step=".01" value="1.25"></div><div class="field"><label for="line-height">Line height <output id="line-height-value">1.5</output></label><input id="line-height" type="range" min="1" max="2" step=".05" value="1.5"></div><div class="field"><label for="letter-spacing">Letter spacing <output id="letter-value">0 px</output></label><input id="letter-spacing" type="range" min="-2" max="8" step=".1" value="0"></div><div class="field"><label for="sample-text">Sample text</label><textarea id="sample-text" rows="3">Design with clarity.</textarea></div></div><div class="unit-card"><p class="eyebrow">CONVERTER</p><div class="unit-fields"><div class="field"><label for="unit-value">Value</label><input id="unit-value" type="number" value="16"></div><div class="field"><label for="unit-select">From</label><select id="unit-select"><option value="px">PX</option><option value="pt">PT</option><option value="mm">MM</option></select></div></div><div id="unit-result" class="unit-result">16 px = 12 pt = 4.23 mm</div></div><button id="copy-css" class="copy-button">Copy CSS system</button></div>
+          <section class="type-preview"><div class="preview-head"><div><p class="eyebrow">PREVIEW</p><h2>Type scale</h2></div><span id="scale-summary">16 px base · 1.25 ratio</span></div><div id="type-sheet" class="type-sheet"><p class="type-label">Display</p><h3 id="preview-display">Design with clarity.</h3><p class="type-label">Heading</p><h4 id="preview-heading">Design with clarity.</h4><p class="type-label">Body</p><p id="preview-body">Design with clarity. Good typography creates hierarchy, rhythm, and a more useful reading experience.</p><p class="type-label">Caption</p><p id="preview-caption">Design with clarity.</p></div></section>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="typography-helper.js"></script>
+  <script src="../maker.js"></script>
+</body>
+</html>

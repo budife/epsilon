@@ -11,6 +11,7 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v1.6.0',date:'13 Sep 2026',title:'Typography Helper MVP',description:'Menambahkan type scale, live preview heading/body/caption, line-height, letter-spacing, converter PX/PT/MM, dan copy CSS.'},
       {version:'v1.5.0',date:'13 Sep 2026',title:'Presentation Board MVP',description:'Menambahkan board lokal untuk moodboard dan approval dengan upload banyak gambar, grid 2/3/4 kolom, judul, caption, background, gap, PNG, dan PDF export.'},
       {version:'v1.4.0',date:'13 Sep 2026',title:'Social Canvas MVP',description:'Menambahkan canvas lokal untuk preset social media, image fit, zoom, posisi, background, text overlay, serta export PNG/JPG.'},
       {version:'v1.3.0',date:'13 Sep 2026',title:'Design QA MVP',description:'Menambahkan pemeriksaan batch asset untuk dimensi, aspect ratio, format, ukuran file, nama file, status PASS/WARNING/FAIL, dan export CSV.'},
