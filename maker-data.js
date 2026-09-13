@@ -11,6 +11,7 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v1.8.7',date:'13 Sep 2026',title:'Rework home category navigation',description:'Tool tabs di home diubah menjadi navigation cards dengan nomor dan nama kategori yang lebih menonjol, tetap compact dan responsive.'},
       {version:'v1.8.6',date:'13 Sep 2026',title:'Fix shade swatch labels',description:'Label HEX pada Shades & tints sekarang diposisikan di dalam swatch agar tidak terpotong.'},
       {version:'v1.8.5',date:'13 Sep 2026',title:'Give Shades & tints more room',description:'Area Shades & tints diperpanjang agar swatch dan label HEX terlihat utuh tanpa terpotong.'},
       {version:'v1.8.4',date:'13 Sep 2026',title:'Fix Shades & tints panel overflow',description:'Panel Color Picker sekarang memakai sisa tinggi viewport dengan scroll internal agar bagian Shades & tints tidak terpotong.'},

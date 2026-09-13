@@ -2,6 +2,10 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.8.7 — 13 Sep 2026
+
+- Reworked home category tabs into more prominent numbered navigation cards with category names, while keeping the layout compact and responsive.
+
 ## v1.8.6 — 13 Sep 2026
 
 - Fixed Shades & tints HEX labels by positioning them inside each swatch so they are not clipped.
