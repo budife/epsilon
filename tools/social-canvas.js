@@ -29,8 +29,6 @@
     {platform:'Facebook',format:'Page Cover',usage:'Cover',width:1640,height:856,aliases:['cover','page']},
     {platform:'X / Twitter',format:'Post Landscape',usage:'Feed',width:1600,height:900,aliases:['twitter','landscape','post']},
     {platform:'X / Twitter',format:'Header Banner',usage:'Profile',width:1500,height:500,aliases:['twitter','banner','profile']},
-    {platform:'Presentation',format:'Full HD',usage:'Slide',width:1920,height:1080,aliases:['presentation','slide','16:9']},
-    {platform:'Presentation',format:'4:3',usage:'Slide',width:1440,height:1080,aliases:['presentation','slide','4:3']}
   ];
   var activePlatform='all';
   function ratio(w,h){var a=w,b=h;while(b){var t=a%b;a=b;b=t;}return(w/a)+':'+(h/a);}

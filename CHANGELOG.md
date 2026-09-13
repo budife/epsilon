@@ -2,6 +2,10 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.9.5 — 13 Sep 2026
+
+- Removed Presentation from Social Size Guide to keep the guide focused on social and messaging platforms.
+
 ## v1.9.4 — 13 Sep 2026
 
 - Removed Pinterest, Email, and Print categories from Social Size Guide to keep the guide focused on social and messaging workflows.
