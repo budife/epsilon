@@ -2,6 +2,10 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.9.4 — 13 Sep 2026
+
+- Removed Pinterest, Email, and Print categories from Social Size Guide to keep the guide focused on social and messaging workflows.
+
 ## v1.9.3 — 13 Sep 2026
 
 - Added TikTok, X/Twitter, Pinterest, Email, Print, and additional platform size presets to Social Size Guide.

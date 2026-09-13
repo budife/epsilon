@@ -29,13 +29,6 @@
     {platform:'Facebook',format:'Page Cover',usage:'Cover',width:1640,height:856,aliases:['cover','page']},
     {platform:'X / Twitter',format:'Post Landscape',usage:'Feed',width:1600,height:900,aliases:['twitter','landscape','post']},
     {platform:'X / Twitter',format:'Header Banner',usage:'Profile',width:1500,height:500,aliases:['twitter','banner','profile']},
-    {platform:'Pinterest',format:'Standard Pin',usage:'Pin',width:1000,height:1500,aliases:['pin','portrait']},
-    {platform:'Pinterest',format:'Square Pin',usage:'Pin',width:1000,height:1000,aliases:['pin','square']},
-    {platform:'Pinterest',format:'Idea Pin',usage:'Story',width:1080,height:1920,maxHeight:1920,aliases:['idea','story','vertical']},
-    {platform:'Email',format:'Hero Banner',usage:'Email',width:1200,height:600,aliases:['email','hero','banner']},
-    {platform:'Email',format:'Header Banner',usage:'Email',width:1200,height:400,aliases:['email','header','banner']},
-    {platform:'Print',format:'A4 Portrait',usage:'Print',width:2480,height:3508,aliases:['a4','print','portrait']},
-    {platform:'Print',format:'A4 Landscape',usage:'Print',width:3508,height:2480,aliases:['a4','print','landscape']},
     {platform:'Presentation',format:'Full HD',usage:'Slide',width:1920,height:1080,aliases:['presentation','slide','16:9']},
     {platform:'Presentation',format:'4:3',usage:'Slide',width:1440,height:1080,aliases:['presentation','slide','4:3']}
   ];
