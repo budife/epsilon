@@ -11,6 +11,7 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v1.9.13',date:'13 Sep 2026',title:'Remove board images inline',description:'Presentation Board sekarang memiliki tombol × pada setiap gambar untuk menghapus file langsung dari board sebelum export.'},
       {version:'v1.9.12',date:'13 Sep 2026',title:'Keep renamed board captions in production',description:'Nama gambar yang diedit langsung di Presentation Board sekarang tetap muncul pada hasil PNG/PDF, sementara input edit tidak ikut terekam.'},
       {version:'v1.9.11',date:'13 Sep 2026',title:'Clean editable board captions',description:'Input rename pada Presentation Board tidak lagi ikut masuk ke hasil PNG/PDF dan caption panjang sekarang wrap otomatis.'},
       {version:'v1.9.10',date:'13 Sep 2026',title:'Rename directly on board',description:'Rename label gambar sekarang dilakukan langsung di bawah setiap gambar pada Presentation Board, bukan lewat daftar terpisah.'},

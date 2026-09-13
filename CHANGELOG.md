@@ -2,9 +2,9 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
-## v1.9.12 — 13 Sep 2026
+## v1.9.13 — 13 Sep 2026
 
-- Kept renamed image captions in Presentation Board PNG/PDF output while hiding only the edit inputs during export.
+- Added an inline × button to remove individual images from Presentation Board before export.
 
 ## v1.9.8 — 13 Sep 2026
 
