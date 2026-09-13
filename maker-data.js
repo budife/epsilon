@@ -11,6 +11,7 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v1.8.3',date:'13 Sep 2026',title:'Preserve minor image colors',description:'Image Palette sekarang memilih cluster yang lebih representatif agar warna kecil seperti teks merah tetap terambil, dan persentase di bawah 0,1% ditampilkan sebagai <0.1%.'},
       {version:'v1.8.2',date:'13 Sep 2026',title:'Compact visual palette output',description:'Grouping warna Image Palette diperlebar agar warna yang mirip lebih banyak bergabung dan hasil palette lebih ringkas.'},
       {version:'v1.8.1',date:'13 Sep 2026',title:'More aggressive color merging',description:'Grouping Image Palette diperlebar lagi agar warna yang secara visual mirip bergabung dan jumlah warna hasil ekstraksi lebih ringkas.'},
       {version:'v1.8.0',date:'13 Sep 2026',title:'Merge similar extracted colors',description:'Image Palette sekarang menggabungkan warna yang mirip menggunakan grouping RGB yang lebih lebar, sambil tetap menampilkan warna rata-rata dari pixel asli.'},

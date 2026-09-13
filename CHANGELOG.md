@@ -2,6 +2,11 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.8.3 — 13 Sep 2026
+
+- Improved palette clustering so small but distinct colors, such as red text, remain represented.
+- Displayed usage below 0.1% as `<0.1%` instead of hiding it as `0%`.
+
 ## v1.8.2 — 13 Sep 2026
 
 - Widened Image Palette grouping so visually similar colors merge into a more compact result.
