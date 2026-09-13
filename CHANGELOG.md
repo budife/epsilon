@@ -2,6 +2,10 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.7.9 — 13 Sep 2026
+
+- Hid colors with a rounded `0%` usage from the extracted image palette.
+
 ## v1.7.8 — 13 Sep 2026
 
 - Removed the 10-color limit from Image Palette extraction.
