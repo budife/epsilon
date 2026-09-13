@@ -2,6 +2,11 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.7.7 — 13 Sep 2026
+
+- Improved Image Palette precision by sampling more pixels and using average colors from the original pixels in each color group.
+- Added approximate percentage usage for each extracted color.
+
 ## v1.7.6 — 13 Sep 2026
 
 - Made extracted palette cards more compact so up to 10 colors fit more comfortably in the panel.
