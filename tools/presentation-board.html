@@ -19,7 +19,7 @@
           <div class="board-controls">
             <label class="board-drop" for="board-input"><span class="upload-symbol">↑</span><strong>Drop images here</strong><small>PNG, JPG, or WebP · multiple files supported</small><span class="choose-button">Choose Images</span></label>
             <input id="board-input" type="file" accept="image/png,image/jpeg,image/webp" multiple hidden>
-            <div id="board-summary" class="board-summary">No images selected</div><div id="board-file-list" class="board-file-list"></div>
+            <div id="board-summary" class="board-summary">No images selected</div>
             <div class="board-options"><div class="field"><label for="board-title">Board title</label><input id="board-title" placeholder="Project title"></div><div class="field"><label for="board-subtitle">Subtitle</label><input id="board-subtitle" placeholder="Optional description"></div><div class="field"><label for="board-columns">Columns</label><select id="board-columns"><option value="2">2 columns</option><option value="3" selected>3 columns</option><option value="4">4 columns</option></select></div><div class="field"><label for="board-gap">Gap <output id="gap-value">20 px</output></label><input id="board-gap" type="range" min="4" max="60" value="20"></div><div class="field"><label for="board-background">Background</label><input id="board-background" class="color-input" type="color" value="#ffffff"></div><label class="check-field"><input id="show-captions" type="checkbox" checked> Show file captions</label></div>
             <div class="board-actions"><button id="export-png" class="primary-button" disabled>Export PNG</button><button id="export-pdf" class="secondary-button" disabled>Export PDF</button></div>
           </div>
