@@ -2,6 +2,10 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.8.0 — 13 Sep 2026
+
+- Merged nearby colors in Image Palette extraction using wider RGB grouping while keeping average original pixel colors as representatives.
+
 ## v1.7.9 — 13 Sep 2026
 
 - Hid colors with a rounded `0%` usage from the extracted image palette.

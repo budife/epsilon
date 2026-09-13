@@ -11,6 +11,7 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v1.8.0',date:'13 Sep 2026',title:'Merge similar extracted colors',description:'Image Palette sekarang menggabungkan warna yang mirip menggunakan grouping RGB yang lebih lebar, sambil tetap menampilkan warna rata-rata dari pixel asli.'},
       {version:'v1.7.9',date:'13 Sep 2026',title:'Hide zero-percent palette colors',description:'Warna hasil ekstraksi dengan persentase 0% sekarang tidak ditampilkan agar daftar palette hanya berisi warna yang benar-benar terdeteksi.'},
       {version:'v1.7.8',date:'13 Sep 2026',title:'Complete image palette colors',description:'Image Palette sekarang menampilkan semua kelompok warna yang ditemukan tanpa batas 10 warna, dengan sample lebih detail dan persentase kemunculan.'},
       {version:'v1.7.7',date:'13 Sep 2026',title:'More precise image palette sampling',description:'Image Palette sekarang mengambil sample pixel lebih banyak, memakai warna rata-rata dari pixel asli, dan menampilkan persentase kemunculan warna.'},
