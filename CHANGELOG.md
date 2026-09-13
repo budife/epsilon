@@ -2,6 +2,10 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.8.5 — 13 Sep 2026
+
+- Increased the Shades & tints area height so swatches and HEX labels are fully visible.
+
 ## v1.8.4 — 13 Sep 2026
 
 - Fixed Color Picker panel overflow so `Shades & tints` stays visible or scrolls inside the panel instead of being clipped.
