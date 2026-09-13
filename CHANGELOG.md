@@ -2,6 +2,11 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.9.6 — 13 Sep 2026
+
+- Replaced `Use in Image Studio` with `Download template` on Social Size Guide cards.
+- Added safe margin guides and visible Story danger zones to generated PNG templates.
+
 ## v1.9.5 — 13 Sep 2026
 
 - Removed Presentation from Social Size Guide to keep the guide focused on social and messaging platforms.

@@ -11,6 +11,7 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v1.9.6',date:'13 Sep 2026',title:'Social Size Guide templates',description:'Setiap size card sekarang bisa download template PNG dengan safe margin kiri/kanan/atas/bawah; format story juga menampilkan danger zone.'},
       {version:'v1.9.5',date:'13 Sep 2026',title:'Focus Social Size Guide',description:'Menghapus kategori Presentation dari Social Size Guide agar fokus pada kebutuhan platform social dan messaging.'},
       {version:'v1.9.4',date:'13 Sep 2026',title:'Simplify Social Size Guide platforms',description:'Menghapus kategori Pinterest, Email, dan Print dari Social Size Guide sesuai fokus workflow social dan messaging.'},
       {version:'v1.9.3',date:'13 Sep 2026',title:'More Social Size Guide presets',description:'Menambahkan ukuran TikTok, X/Twitter, Pinterest, Email, Print, variasi platform tambahan, alias search, dan max height yang relevan.'},
