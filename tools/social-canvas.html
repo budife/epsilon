@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Social Canvas — Epsilon</title>
+  <link rel="icon" type="image/png" href="../assets/epsilon-logo.png">
+  <link rel="stylesheet" href="social-canvas.css">
+  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="../maker.css">
+</head>
+<body>
+  <main class="canvas-app">
+    <header class="canvas-header"><a class="canvas-brand" href="../index.html"><span class="canvas-brand-mark">E</span><span>Epsilon · Social Canvas</span></a><div class="canvas-header-note">Create social-ready artwork</div></header>
+    <div class="canvas-layout">
+      <section class="canvas-main">
+        <div class="canvas-title"><div><p class="eyebrow">CREATE CONTENT</p><h1>Social Canvas</h1></div><p>Place an image on a ready-made canvas, add a message, and export it locally.</p></div>
+        <div class="canvas-columns">
+          <div class="canvas-controls">
+            <label class="canvas-drop" for="canvas-input"><span class="upload-symbol">↑</span><strong>Drop an image here</strong><small>PNG, JPG, or WebP</small><span class="choose-button">Choose Image</span></label>
+            <input id="canvas-input" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+            <div id="canvas-file" class="canvas-file">No image selected</div>
+            <div class="canvas-options">
+              <div class="field"><label for="canvas-preset">Canvas preset</label><select id="canvas-preset"><option value="1080x1080">Instagram Square · 1080 × 1080</option><option value="1080x1350">Instagram Portrait · 1080 × 1350</option><option value="1080x1920">Story / Reels · 1080 × 1920</option><option value="1200x627">LinkedIn · 1200 × 627</option><option value="1280x720">YouTube Thumbnail · 1280 × 720</option><option value="custom">Custom</option></select></div>
+              <div id="canvas-custom" class="custom-fields" hidden><div class="field"><label for="canvas-width">Width</label><input id="canvas-width" type="number" min="1" value="1080"></div><div class="field"><label for="canvas-height">Height</label><input id="canvas-height" type="number" min="1" value="1080"></div></div>
+              <div class="field"><label for="fit-mode">Image fit</label><select id="fit-mode"><option value="cover">Cover</option><option value="contain">Contain</option></select></div>
+              <div class="field"><label for="zoom">Image zoom <output id="zoom-value">100%</output></label><input id="zoom" type="range" min="50" max="200" value="100"></div>
+              <div class="position-fields"><div class="field"><label for="position-x">Position X</label><input id="position-x" type="range" min="0" max="100" value="50"></div><div class="field"><label for="position-y">Position Y</label><input id="position-y" type="range" min="0" max="100" value="50"></div></div>
+              <div class="field"><label for="background">Background</label><input id="background" class="color-input" type="color" value="#17212b"></div>
+              <div class="field"><label for="overlay-text">Text overlay</label><textarea id="overlay-text" rows="2" placeholder="Optional message"></textarea></div>
+              <div class="text-fields"><div class="field"><label for="text-size">Text size</label><input id="text-size" type="number" min="10" max="400" value="64"></div><div class="field"><label for="text-color">Text color</label><input id="text-color" class="color-input" type="color" value="#ffffff"></div></div>
+            </div>
+            <div class="canvas-actions"><button id="export-png" class="primary-button" disabled>Export PNG</button><button id="export-jpg" class="secondary-button" disabled>Export JPG</button></div>
+          </div>
+          <section class="canvas-preview"><div class="preview-head"><div><p class="eyebrow">PREVIEW</p><h2 id="canvas-size-label">1080 × 1080</h2></div><span>Local preview</span></div><div class="preview-stage"><canvas id="social-canvas" width="1080" height="1080"></canvas><div id="preview-empty">Upload an image to start.</div></div></section>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="social-canvas.js"></script>
+  <script src="../maker.js"></script>
+</body>
+</html>

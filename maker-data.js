@@ -11,6 +11,7 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v1.4.0',date:'13 Sep 2026',title:'Social Canvas MVP',description:'Menambahkan canvas lokal untuk preset social media, image fit, zoom, posisi, background, text overlay, serta export PNG/JPG.'},
       {version:'v1.3.0',date:'13 Sep 2026',title:'Design QA MVP',description:'Menambahkan pemeriksaan batch asset untuk dimensi, aspect ratio, format, ukuran file, nama file, status PASS/WARNING/FAIL, dan export CSV.'},
       {version:'v1.2.0',date:'13 Sep 2026',title:'Color Studio MVP',description:'Menambahkan color picker, konversi HEX/RGB/HSL, palette manual, serta generator shades dan tints lokal.'},
       {version:'v1.1.0',date:'13 Sep 2026',title:'Image Studio MVP',description:'Menambahkan tool untuk resize, convert format, mengatur quality, dan rename beberapa gambar langsung di browser.'},

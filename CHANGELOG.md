@@ -2,6 +2,11 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.4.0 — 13 Sep 2026
+
+- Added Social Canvas MVP under the Create category.
+- Added social presets, image fit, zoom, positioning, background, text overlay, and local PNG/JPG export.
+
 ## v1.3.0 — 13 Sep 2026
 
 - Added Design QA MVP under the Check category.
