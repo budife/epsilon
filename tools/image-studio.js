@@ -25,4 +25,7 @@
   document.getElementById('process').addEventListener('click',function(){results=files.map(processFile);renderResults();});
   document.getElementById('download-all').addEventListener('click',function(){results.forEach(function(result,index){setTimeout(function(){download(result);},index*150);});});
   document.getElementById('clear').addEventListener('click',function(){files=[];results=[];input.value='';objectUrls.forEach(URL.revokeObjectURL);objectUrls=[];showFiles();renderResults();});
+  var requestedPreset=new URLSearchParams(window.location.search).get('preset');
+  if(requestedPreset&&preset.querySelector('option[value="'+requestedPreset+'"]'))preset.value=requestedPreset;
+  updateSizeFromPreset();
 }());

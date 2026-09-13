@@ -18,7 +18,7 @@ Open `index.html` directly in Chrome or Edge, or use VS Code Live Server on port
 | Image Studio | `tools/image-studio.html` | Resize, convert, and rename multiple images locally in the browser. |
 | Color Studio | `tools/color-studio.html` | Explore HEX/RGB/HSL values, extract palettes from images, and generate shades and tints. |
 | Design QA | `tools/design-qa.html` | Check asset dimensions, aspect ratios, formats, sizes, and filenames before delivery. |
-| Social Canvas | `tools/social-canvas.html` | Place an image on social presets, add text, and export PNG/JPG locally. |
+| Social Size Guide | `tools/social-canvas.html` | Find social, messaging, and presentation sizes, then use them in Image Studio. |
 | Presentation Board | `tools/presentation-board.html` | Arrange multiple images into a review board and export PNG/PDF locally. |
 | Typography Helper | `tools/typography-helper.html` | Build a type scale, preview hierarchy, convert units, and copy CSS locally. |
 | Screenshot Reference Board | `tools/screenshot-reference-board.html` | Collect screenshots, add source notes, and export a visual reference board. |

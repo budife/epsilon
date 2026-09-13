@@ -2,6 +2,11 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v1.9.0 — 13 Sep 2026
+
+- Reworked Social Canvas into Social Size Guide under the Prepare category.
+- Added platform filters, search, copy size, Use in Image Studio integration, custom calculator, and WhatsApp WA Blast sizes with visible max-height information.
+
 ## v1.8.7 — 13 Sep 2026
 
 - Reworked home category tabs into more prominent numbered navigation cards with category names, while keeping the layout compact and responsive.
