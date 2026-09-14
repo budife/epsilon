@@ -11,6 +11,7 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v2.1.2',date:'13 Sep 2026',title:'Pin home footer to viewport bottom',description:'Footer home sekarang selalu menempel di bagian bawah viewport, sementara area tools menjadi satu-satunya area scroll.'},
       {version:'v2.1.1',date:'13 Sep 2026',title:'Compact four-column home grid',description:'Home tool grid sekarang memakai 4 kolom desktop dengan card, spacing, typography, header, dan footer yang lebih compact.'},
       {version:'v2.1.0',date:'13 Sep 2026',title:'Unified home tool grid',description:'Semua tool sekarang tampil dalam satu grid tanpa tab kategori, dengan label workflow kecil dan hover card yang lebih menonjol.'},
       {version:'v2.0.0',date:'13 Sep 2026',title:'PDF Tools MVP',description:'Mengganti Image Studio dari navigasi Prepare dengan PDF Tools untuk merge PDF, reorder/remove file, rename output, dan optimasi structure tanpa rasterisasi.'},
