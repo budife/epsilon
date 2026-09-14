@@ -2,6 +2,11 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v2.1.1 — 13 Sep 2026
+
+- Changed the unified home tool grid to four desktop columns.
+- Tightened card, typography, spacing, header, and footer sizing for a more compact layout.
+
 ## v2.1.0 — 13 Sep 2026
 
 - Unified all Epsilon tools into one home grid without category tabs.
