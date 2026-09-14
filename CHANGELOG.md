@@ -2,6 +2,10 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v2.1.4 — 13 Sep 2026
+
+- Reworked home footer social links into compact rounded-square buttons with softer hover states.
+
 ## v2.1.3 — 13 Sep 2026
 
 - Polished the home footer with a clean divider, clearer maker link, compact social buttons, and responsive alignment.
