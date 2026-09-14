@@ -11,6 +11,7 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v2.1.0',date:'13 Sep 2026',title:'Unified home tool grid',description:'Semua tool sekarang tampil dalam satu grid tanpa tab kategori, dengan label workflow kecil dan hover card yang lebih menonjol.'},
       {version:'v2.0.0',date:'13 Sep 2026',title:'PDF Tools MVP',description:'Mengganti Image Studio dari navigasi Prepare dengan PDF Tools untuk merge PDF, reorder/remove file, rename output, dan optimasi structure tanpa rasterisasi.'},
       {version:'v1.9.13',date:'13 Sep 2026',title:'Remove board images inline',description:'Presentation Board sekarang memiliki tombol × pada setiap gambar untuk menghapus file langsung dari board sebelum export.'},
       {version:'v1.9.12',date:'13 Sep 2026',title:'Keep renamed board captions in production',description:'Nama gambar yang diedit langsung di Presentation Board sekarang tetap muncul pada hasil PNG/PDF, sementara input edit tidak ikut terekam.'},

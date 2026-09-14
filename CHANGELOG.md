@@ -2,6 +2,11 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v2.1.0 — 13 Sep 2026
+
+- Unified all Epsilon tools into one home grid without category tabs.
+- Added workflow labels and stronger hover states to make cards easier to scan and discover.
+
 ## v2.0.0 — 13 Sep 2026
 
 - Replaced Image Studio in the Prepare navigation with PDF Tools.
