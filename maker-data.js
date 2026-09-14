@@ -11,6 +11,7 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v2.1.3',date:'13 Sep 2026',title:'Polish home footer',description:'Footer home dibuat lebih clean dengan border, layout kiri-kanan, link maker yang jelas, dan social buttons compact.'},
       {version:'v2.1.2',date:'13 Sep 2026',title:'Pin home footer to viewport bottom',description:'Footer home sekarang selalu menempel di bagian bawah viewport, sementara area tools menjadi satu-satunya area scroll.'},
       {version:'v2.1.1',date:'13 Sep 2026',title:'Compact four-column home grid',description:'Home tool grid sekarang memakai 4 kolom desktop dengan card, spacing, typography, header, dan footer yang lebih compact.'},
       {version:'v2.1.0',date:'13 Sep 2026',title:'Unified home tool grid',description:'Semua tool sekarang tampil dalam satu grid tanpa tab kategori, dengan label workflow kecil dan hover card yang lebih menonjol.'},

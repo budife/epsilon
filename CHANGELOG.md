@@ -2,6 +2,10 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v2.1.3 — 13 Sep 2026
+
+- Polished the home footer with a clean divider, clearer maker link, compact social buttons, and responsive alignment.
+
 ## v2.1.2 — 13 Sep 2026
 
 - Pinned the home footer to the bottom of the viewport while keeping tool content as the internal scroll area.
