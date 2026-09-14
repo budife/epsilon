@@ -8,3 +8,4 @@
 :root{--pdf-controls-width:300px}.pdf-warning{margin:8px 0 12px;padding:9px 10px;border:1px solid #f0d394;background:#fff8e8;color:#8a5a00;font-size:11px;line-height:1.45}.pdf-options [hidden]{display:none}
 :root{--pdf-controls-width:300px}.output-name-field{margin-top:12px;padding:12px 14px;border:1px solid var(--line);background:#fff}.output-name-field label{margin-bottom:6px}.output-name-field input{height:34px}
 :root{--pdf-controls-width:300px}.pdf-item{cursor:grab}.pdf-item.dragging{opacity:.45}.pdf-item.drag-over{border-color:#db0011;background:#fff5f6}.pdf-item:active{cursor:grabbing}
+:root{--pdf-controls-width:300px}.pdf-drag-handle{flex:0 0 18px;color:#9aa5af;font-size:18px;line-height:1;text-align:center;cursor:grab}.pdf-item:hover .pdf-drag-handle{color:#db0011}
