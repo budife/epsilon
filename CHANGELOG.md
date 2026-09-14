@@ -2,6 +2,10 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v2.1.6 — 13 Sep 2026
+
+- Refined the unified home tool grid with clearer card hierarchy, rounded surfaces, icon blocks, spacing, shadows, and a softer hover accent.
+
 ## v2.1.5 — 13 Sep 2026
 
 - Ordered home tool cards by workflow: Create, Prepare, Check, then Existing.

@@ -11,6 +11,7 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v2.1.6',date:'13 Sep 2026',title:'Polish unified tool grid',description:'Card home dibuat lebih rapi dengan radius, hierarchy, icon block, spacing, shadow, dan hover accent yang lebih enak dipindai.'},
       {version:'v2.1.5',date:'13 Sep 2026',title:'Order home tool cards by workflow',description:'Card home sekarang diurutkan dari Create, Prepare, Check, lalu Existing agar alur tools lebih mudah dipindai.'},
       {version:'v2.1.4',date:'13 Sep 2026',title:'Polish footer social icons',description:'Social links di footer home sekarang memakai rounded-square icon buttons dengan background lembut, hover, dan spacing yang lebih clean.'},
       {version:'v2.1.3',date:'13 Sep 2026',title:'Polish home footer',description:'Footer home dibuat lebih clean dengan border, layout kiri-kanan, link maker yang jelas, dan social buttons compact.'},
