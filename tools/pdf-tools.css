@@ -9,3 +9,4 @@
 :root{--pdf-controls-width:300px}.output-name-field{margin-top:12px;padding:12px 14px;border:1px solid var(--line);background:#fff}.output-name-field label{margin-bottom:6px}.output-name-field input{height:34px}
 :root{--pdf-controls-width:300px}.pdf-item{cursor:grab}.pdf-item.dragging{opacity:.45}.pdf-item.drag-over{border-color:#db0011;background:#fff5f6}.pdf-item:active{cursor:grabbing}
 :root{--pdf-controls-width:300px}.pdf-drag-handle{flex:0 0 18px;color:#9aa5af;font-size:18px;line-height:1;text-align:center;cursor:grab}.pdf-item:hover .pdf-drag-handle{color:#db0011}
+:root{--pdf-controls-width:270px}.pdf-layout{max-width:1240px;padding-left:24px;padding-right:24px}.pdf-columns{grid-template-columns:var(--pdf-controls-width) minmax(0,1fr);gap:14px}.pdf-controls{min-width:0}.pdf-preview-panel{min-width:0}.pdf-preview-panel .pdf-preview{min-width:0}
