@@ -2,6 +2,10 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v2.1.14 — 29 Sep 2026
+
+- QR vCard: a new "Apply to fields" button (or Ctrl+Enter) fills the contact fields from what you paste. Real vCards get sturdier parsing — Outlook quoted-printable names, correct address slots (street/city/state/zip/country), any line ending, first contact of a multi-contact bundle — and rough plain-text cards (name, job, company, address with ZIP split into its own field, phone/email/website lines) are detected line by line too. Website links are normalized to `https://www.…` (an explicit `http://` is kept), and a clear notice tells you when nothing can be detected.
+
 ## v2.1.13 — 29 Sep 2026
 
 - Image Studio can now compress PDFs: drop a PDF and it re-encodes the embedded photos/scans at the chosen Quality or target KB/MB limit while keeping text and vectors untouched. Each PDF gets its own output card with original vs compressed size, page count, and a clear note when the file has no recompressible images.
