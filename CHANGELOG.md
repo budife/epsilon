@@ -2,6 +2,14 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v2.1.13 — 29 Sep 2026
+
+- Image Studio can now compress PDFs: drop a PDF and it re-encodes the embedded photos/scans at the chosen Quality or target KB/MB limit while keeping text and vectors untouched. Each PDF gets its own output card with original vs compressed size, page count, and a clear note when the file has no recompressible images.
+
+## v2.1.12 — 29 Sep 2026
+
+- Image Studio: each result now shows the exact original vs compressed size with the reduction percentage, and a new "Max file size" option automatically tunes JPG/WebP quality until every image fits a KB/MB limit.
+
 ## v2.1.11 — 25 Sep 2026
 
 - Social Size Guide: clicking a width or height number now copies only the number (e.g. `1080`) without the ` px` unit; the Copy size button still copies `1080 × 1920 px`.

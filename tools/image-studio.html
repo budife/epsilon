@@ -19,15 +19,18 @@
         <div class="image-title"><div><p class="eyebrow">PREPARE ASSETS</p><h1>Image Studio</h1></div><p>Resize, convert, compress, and rename images locally in your browser.</p></div>
         <div class="image-columns">
           <div class="image-controls">
-            <label class="drop-zone" for="image-input"><span class="upload-symbol">↑</span><strong>Drop images here</strong><small>PNG, JPG, or WebP · multiple files supported</small><span class="choose-button">Choose Images</span></label>
-            <input id="image-input" type="file" accept="image/png,image/jpeg,image/webp" multiple hidden>
+            <label class="drop-zone" for="image-input"><span class="upload-symbol">↑</span><strong>Drop images here</strong><small>PNG, JPG, WebP, or PDF · multiple files supported</small><span class="choose-button">Choose Images</span></label>
+            <input id="image-input" type="file" accept="image/png,image/jpeg,image/webp,application/pdf,.pdf" multiple hidden>
             <div id="file-summary" class="file-summary">No images selected</div>
+            <p id="batch-note" class="batch-note" hidden>PDF pages keep their size and are exported as PDF · resize &amp; format apply to images only</p>
             <div class="control-card">
               <div class="field"><label for="preset">Resize preset</label><select id="preset"><option value="original">Original size</option><option value="1080x1080">Instagram Square · 1080 × 1080</option><option value="1080x1350">Instagram Portrait · 1080 × 1350</option><option value="1080x1920">Story / Reels · 1080 × 1920</option><option value="1200x627">LinkedIn · 1200 × 627</option><option value="1920x1080">Presentation · 1920 × 1080</option><option value="custom">Custom size</option></select></div>
               <div class="size-fields"><div class="field"><label for="width">Width</label><input id="width" type="number" min="1" placeholder="Width"></div><div class="field"><label for="height">Height</label><input id="height" type="number" min="1" placeholder="Height"></div></div>
               <label class="check-field"><input id="lock-ratio" type="checkbox" checked> Keep aspect ratio</label>
               <div class="field"><label for="format">Output format</label><select id="format"><option value="image/jpeg">JPG</option><option value="image/png">PNG</option><option value="image/webp">WebP</option></select></div>
               <div class="field quality-field"><label for="quality">Quality <output id="quality-value">90%</output></label><input id="quality" type="range" min="10" max="100" value="90"></div>
+              <label class="check-field target-toggle"><input id="target-toggle" type="checkbox"> Max file size</label>
+              <div class="field target-field"><label for="target-size">Limit <output id="target-note" hidden></output></label><div class="target-row"><input id="target-size" type="number" min="1" value="100" disabled><select id="target-unit" disabled><option value="1024">KB</option><option value="1048576">MB</option></select></div></div>
               <div class="rename-fields"><div class="field"><label for="prefix">Prefix</label><input id="prefix" placeholder="e.g. client-"></div><div class="field"><label for="suffix">Suffix</label><input id="suffix" placeholder="e.g. -final"></div></div>
             </div>
             <div class="image-actions"><button id="process" class="primary-button" disabled>Process Images</button><button id="clear" class="secondary-button">Clear</button></div>
@@ -37,6 +40,7 @@
       </section>
     </div>
   </main>
+  <script src="../libs/pdf-lib.min.js"></script>
   <script src="image-studio.js"></script>
   <script src="../maker.js"></script>
 </body>

@@ -57,7 +57,7 @@ epsilon/
 | Website Screenshot | `tools/screenshot.html` | Capture URL jadi PNG/JPG/PDF via Worker + html2canvas |
 | Template Assembler | `tools/assembler.html` | Gabung header + layout image + footer jadi email HTML/Image |
 | PDF Tools | `tools/pdf-tools.html` | Merge + optimasi banyak PDF tanpa rasterisasi |
-| Image Studio | `tools/image-studio.html` | Resize/convert/compress/rename gambar lokal |
+| Image Studio | `tools/image-studio.html` | Resize/convert/compress/rename gambar lokal; kompres PDF (re-encode gambar di dalamnya, teks/vektor tetap) |
 | Color Studio | `tools/color-studio.html` | Eksplorasi warna, palettes, shades/tints |
 | Design QA | `tools/design-qa.html` | Cek dimensi/rasio/format/ukuran/nama file sebelum delivery |
 | Social Size Guide | `tools/social-canvas.html` | Kumpulan size social/messaging + kalkulator ukuran |

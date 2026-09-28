@@ -11,6 +11,8 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v2.1.13',date:'29 Sep 2026',title:'Compress PDFs in Image Studio',description:'Image Studio kini bisa kompres PDF: cukup drop PDF, foto/scan di dalamnya di-encode ulang sesuai Quality atau batas KB/MB, sementara teks dan vektor tetap tajam. Tiap PDF punya kartu hasil sendiri dengan ukuran asli vs terkompresi, jumlah halaman, dan catatan bila tidak ada gambar yang bisa dikompres.'},
+      {version:'v2.1.12',date:'29 Sep 2026',title:'Image Studio size report & target limit',description:'Hasil Image Studio kini menampilkan ukuran asli vs terkompresi dengan persentase pengurangan (byte asli, bukan estimasi), plus opsi baru "Max file size" yang menurunkan quality JPG/WebP otomatis sampai muat batas KB/MB.'},
       {version:'v2.1.11',date:'25 Sep 2026',title:'Copy size numbers without px',description:'Klik angka width/height pada kartu Social Size Guide sekarang menyalin angkanya saja tanpa satuan px (1080, bukan 1080 px); tombol Copy size tetap menyalin lengkap dengan px.'},
       {version:'v2.1.10',date:'25 Sep 2026',title:'Alphabetical home grid, no workflow labels',description:'Label workflow (Create/Prepare/Check/Existing) dihapus dari card home, dan urutan grid diubah menjadi alfabetis A–Z berdasarkan nama tool.'},
       {version:'v2.1.9',date:'25 Sep 2026',title:'Home grid fits in one page',description:'Grid home sekarang selalu muat dalam satu halaman tanpa scroll di desktop: baris menyesuaikan tinggi viewport, isi card dipusatkan vertikal dengan link di bawah, card jadi compact di layar pendek, dan hanya layar sempit yang memakai scroll internal.'},
