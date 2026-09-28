@@ -2,6 +2,22 @@
 
 All notable user-visible changes are recorded here. The newest entry must match the first item in `maker-data.js` under `changes`.
 
+## v2.1.11 — 25 Sep 2026
+
+- Social Size Guide: clicking a width or height number now copies only the number (e.g. `1080`) without the ` px` unit; the Copy size button still copies `1080 × 1920 px`.
+
+## v2.1.10 — 25 Sep 2026
+
+- Removed the workflow labels (Create/Prepare/Check/Existing) from the home tool cards and re-sorted the grid alphabetically A–Z by tool name.
+
+## v2.1.9 — 25 Sep 2026
+
+- Home tool grid now always fits in one page: rows stretch to the viewport, card content is vertically centered with the link pinned to the bottom, cards compact on short screens, and only narrow viewports keep an internal scroll area.
+
+## v2.1.8 — 25 Sep 2026
+
+- Added the "meet the maker" entry link to every tool page header, and removed the stale unused maker modal in favour of the dedicated `the-maker.html` page. Image Studio is back in the home tool grid, and the `Tools` heading above the home grid is gone.
+
 ## v2.1.7 — 13 Sep 2026
 
 - Improved QR payload compatibility across Apple and Android scanners for Phone, SMS, Mail, Wi-Fi, WhatsApp, and vCard formats.

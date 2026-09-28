@@ -11,6 +11,10 @@
     instagram:'https://instagram.com/budife.psd/',
     linkedin:'https://linkedin.com/in/budifelt/',
     changes:[
+      {version:'v2.1.11',date:'25 Sep 2026',title:'Copy size numbers without px',description:'Klik angka width/height pada kartu Social Size Guide sekarang menyalin angkanya saja tanpa satuan px (1080, bukan 1080 px); tombol Copy size tetap menyalin lengkap dengan px.'},
+      {version:'v2.1.10',date:'25 Sep 2026',title:'Alphabetical home grid, no workflow labels',description:'Label workflow (Create/Prepare/Check/Existing) dihapus dari card home, dan urutan grid diubah menjadi alfabetis A–Z berdasarkan nama tool.'},
+      {version:'v2.1.9',date:'25 Sep 2026',title:'Home grid fits in one page',description:'Grid home sekarang selalu muat dalam satu halaman tanpa scroll di desktop: baris menyesuaikan tinggi viewport, isi card dipusatkan vertikal dengan link di bawah, card jadi compact di layar pendek, dan hanya layar sempit yang memakai scroll internal.'},
+      {version:'v2.1.8',date:'25 Sep 2026',title:'Image Studio & maker link on every tool',description:'Image Studio kembali muncul di grid home, dan semua halaman tool sekarang punya link "meet the maker" di header yang mengarah ke halaman the-maker.html (modal maker lama yang sudah usang dihapus), dan judul "Tools" di atas grid home dihapus.'},
       {version:'v2.1.7',date:'13 Sep 2026',title:'QR Apple & Android payloads',description:'Memperbaiki payload Phone, SMS, Mail, Wi-Fi, WhatsApp, dan vCard agar lebih konsisten dibaca scanner Apple dan Android.'},
       {version:'v2.1.6',date:'13 Sep 2026',title:'Polish unified tool grid',description:'Card home dibuat lebih rapi dengan radius, hierarchy, icon block, spacing, shadow, dan hover accent yang lebih enak dipindai.'},
       {version:'v2.1.5',date:'13 Sep 2026',title:'Order home tool cards by workflow',description:'Card home sekarang diurutkan dari Create, Prepare, Check, lalu Existing agar alur tools lebih mudah dipindai.'},

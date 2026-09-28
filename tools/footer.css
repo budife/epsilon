@@ -1,6 +1,6 @@
 .head-footer{display:flex;align-items:center;gap:16px}
 .head-footer p{margin:0;color:#8a959d;font-size:11px}
-.head-footer .creator-link{position:relative;cursor:pointer;color:#6d7984;font-weight:600}
+.head-footer .creator-link{position:relative;cursor:pointer;color:#6d7984;font-weight:600;text-decoration:none}
 .head-footer .creator-link:hover{color:#db0011}
 .head-footer .creator-tooltip{position:absolute;top:100%;right:0;padding:6px 12px;background:#17212b;color:#fff;font-size:11px;font-weight:400;white-space:nowrap;border-radius:4px;opacity:0;visibility:hidden;transition:opacity .15s ease,visibility .15s ease;pointer-events:none;z-index:10}
 .head-footer .creator-tooltip::after{content:'';position:absolute;bottom:100%;right:14px;border:5px solid transparent;border-bottom-color:#17212b}

@@ -16,7 +16,7 @@
 
 ## Tools
 
-- Keep the five tools visible in `index.html`.
+- Keep every tool visible on the unified home grid (`index.html` + `maker.js`); new tools must be added there, in `README.md`, and in `AGENTS.md` §4.
 - Keep Daily Currency export dimensions unchanged.
 - Keep remote Screenshot fetcher behavior compatible with Google Apps Script and the legacy Worker.
 - Keep vendor dependencies local in `libs/` where possible.
